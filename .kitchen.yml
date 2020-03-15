@@ -13,7 +13,8 @@ verifier:
     - name: basic
       backend: local
       controls:
-        - file_check
+        - file1_check
+        - file2_check
 
 platforms:
   - name: terraform
