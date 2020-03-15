@@ -13,24 +13,17 @@ resource "aws_s3_bucket" "flugel" {
   }
 }
 
-resource "local_file" "test1" {
+resource "local_file" "test_files" {
+  count     = 2
   content   = timestamp()
-  filename  = "${path.module}/test1.txt"
+  filename  = "./test${count.index + 1}.txt"
 }
 
-resource "local_file" "test2" {
-  content   = timestamp()
-  filename  = "${path.module}/test2.txt"
-}
-
-resource "aws_s3_bucket_object" "test1_file" {
+resource "aws_s3_bucket_object" "file_object" {
+  count  = 2
   bucket = aws_s3_bucket.flugel.id
-  key    = "test1.txt"
-  source = "${path.module}/test1.txt"
-}
-
-resource "aws_s3_bucket_object" "test2_file" {
-  bucket = aws_s3_bucket.flugel.id
-  key    = "test2.txt"
-  source = "${path.module}/test2.txt"
+  key    = "test${count.index + 1}.txt"
+  source = "./test${count.index + 1}.txt"
+  
+  depends_on = [local_file.test_files]
 }
