@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "flugel" {
-  bucket = "flugel-test1-bucket"
+  bucket = "${var.bucket_name}"
   acl    = "private"
 
   tags = {
@@ -13,17 +13,18 @@ resource "aws_s3_bucket" "flugel" {
   }
 }
 
-resource "local_file" "test_files" {
-  count     = 2
-  content   = timestamp()
-  filename  = "./test${count.index + 1}.txt"
+resource "aws_s3_bucket_object" "object_1" {
+  bucket = "${aws_s3_bucket.flugel.id}"
+  key    = "test1.txt"
+	content = "${timestamp()}"
 }
 
-resource "aws_s3_bucket_object" "file_object" {
-  count  = 2
-  bucket = aws_s3_bucket.flugel.id
-  key    = "test${count.index + 1}.txt"
-  source = "./test${count.index + 1}.txt"
-  
-  depends_on = [local_file.test_files]
+resource "aws_s3_bucket_object" "object_2" {
+  bucket = "${aws_s3_bucket.flugel.id}"
+  key    = "test2.txt"
+	content = "${timestamp()}"
+}
+
+output "bucket_id" {
+  value = "${aws_s3_bucket.flugel.id}"
 }

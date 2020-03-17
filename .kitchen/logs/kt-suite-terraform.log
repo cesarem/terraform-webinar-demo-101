@@ -1,10 +1,52 @@
-I, [2020-03-15T06:42:19.692426 #5056]  INFO -- kt-suite-terraform: -----> Verifying <kt-suite-terraform>...
-W, [2020-03-15T06:42:19.693268 #5056]  WARN -- kt-suite-terraform: Reading the Terraform input variables from the Kitchen instance state...
-W, [2020-03-15T06:42:19.693756 #5056]  WARN -- kt-suite-terraform: Finished reading the Terraform input variables from the Kitchen instance state.
-W, [2020-03-15T06:42:19.694252 #5056]  WARN -- kt-suite-terraform: Reading the Terraform output variables from the Kitchen instance state...
-W, [2020-03-15T06:42:19.694728 #5056]  WARN -- kt-suite-terraform: Finished reading the Terraform output varibales from the Kitchen instance state.
-W, [2020-03-15T06:42:19.695193 #5056]  WARN -- kt-suite-terraform: Verifying the systems...
-W, [2020-03-15T06:42:19.695761 #5056]  WARN -- kt-suite-terraform: Verifying the 'basic' system...
-W, [2020-03-15T06:42:19.842812 #5056]  WARN -- kt-suite-terraform: Finished verifying the 'basic' system.
-W, [2020-03-15T06:42:19.843392 #5056]  WARN -- kt-suite-terraform: Finished verifying the systems.
-I, [2020-03-15T06:42:19.844409 #5056]  INFO -- kt-suite-terraform: Finished verifying <kt-suite-terraform> (0m0.15s).
+I, [2020-03-17T16:44:35.331695 #15873]  INFO -- kt-suite-terraform: -----> Destroying <kt-suite-terraform>...
+W, [2020-03-17T16:44:35.332602 #15873]  WARN -- kt-suite-terraform: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
+W, [2020-03-17T16:44:35.333102 #15873]  WARN -- kt-suite-terraform: Reading the Terraform client version...
+I, [2020-03-17T16:44:35.360225 #15873]  INFO -- kt-suite-terraform: Terraform v0.12.23
+I, [2020-03-17T16:44:35.980256 #15873]  INFO -- kt-suite-terraform: + provider.aws v2.53.0
+I, [2020-03-17T16:44:35.981201 #15873]  INFO -- kt-suite-terraform: + provider.local v1.4.0
+W, [2020-03-17T16:44:35.993811 #15873]  WARN -- kt-suite-terraform: Finished reading the Terraform client version.
+W, [2020-03-17T16:44:35.994416 #15873]  WARN -- kt-suite-terraform: Finished verifying the Terraform client version.
+W, [2020-03-17T16:44:35.994880 #15873]  WARN -- kt-suite-terraform: Initializing the Terraform working directory...
+I, [2020-03-17T16:44:36.019795 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing modules...[0m
+I, [2020-03-17T16:44:36.023957 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.024552 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing the backend...[0m
+I, [2020-03-17T16:44:36.028208 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.030908 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing provider plugins...[0m
+I, [2020-03-17T16:44:36.660797 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.660869 #15873]  INFO -- kt-suite-terraform: The following providers do not have any version constraints in configuration,
+I, [2020-03-17T16:44:36.660894 #15873]  INFO -- kt-suite-terraform: so the latest version was installed.
+I, [2020-03-17T16:44:36.660914 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.660933 #15873]  INFO -- kt-suite-terraform: To prevent automatic upgrades to new major versions that may contain breaking
+I, [2020-03-17T16:44:36.662566 #15873]  INFO -- kt-suite-terraform: changes, it is recommended to add version = "..." constraints to the
+I, [2020-03-17T16:44:36.662605 #15873]  INFO -- kt-suite-terraform: corresponding provider blocks in configuration, with the constraint strings
+I, [2020-03-17T16:44:36.662631 #15873]  INFO -- kt-suite-terraform: suggested below.
+I, [2020-03-17T16:44:36.663588 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.664282 #15873]  INFO -- kt-suite-terraform: * provider.local: version = "~> 1.4"
+I, [2020-03-17T16:44:36.664728 #15873]  INFO -- kt-suite-terraform: 
+I, [2020-03-17T16:44:36.665268 #15873]  INFO -- kt-suite-terraform: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+W, [2020-03-17T16:44:36.677943 #15873]  WARN -- kt-suite-terraform: Finished initializing the Terraform working directory.
+W, [2020-03-17T16:44:36.678374 #15873]  WARN -- kt-suite-terraform: Selecting the kitchen-terraform-kt-suite-terraform Terraform workspace...
+I, [2020-03-17T16:44:36.703992 #15873]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "kitchen-terraform-kt-suite-terraform".[0m
+W, [2020-03-17T16:44:36.718057 #15873]  WARN -- kt-suite-terraform: Finished selecting the kitchen-terraform-kt-suite-terraform Terraform workspace.
+W, [2020-03-17T16:44:36.718554 #15873]  WARN -- kt-suite-terraform: Destroying the Terraform-managed infrastructure...
+I, [2020-03-17T16:44:38.781942 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.test_files[0]: Refreshing state... [id=3e147058d8555fb8368be3dbe757557932652800][0m
+I, [2020-03-17T16:44:38.785058 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.test_files[1]: Refreshing state... [id=3e147058d8555fb8368be3dbe757557932652800][0m
+I, [2020-03-17T16:44:39.123943 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
+I, [2020-03-17T16:44:39.716827 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Refreshing state... [id=test1.txt][0m
+I, [2020-03-17T16:44:39.718624 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Refreshing state... [id=test2.txt][0m
+I, [2020-03-17T16:44:40.726052 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Destroying... [id=test2.txt][0m[0m
+I, [2020-03-17T16:44:40.726132 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Destroying... [id=test1.txt][0m[0m
+I, [2020-03-17T16:44:40.768264 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Destruction complete after 0s[0m[0m
+I, [2020-03-17T16:44:40.772483 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Destruction complete after 0s[0m[0m
+I, [2020-03-17T16:44:40.786352 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
+I, [2020-03-17T16:44:40.933942 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
+I, [2020-03-17T16:44:40.948255 #15873]  INFO -- kt-suite-terraform: [0m[1m[32m
+I, [2020-03-17T16:44:40.948300 #15873]  INFO -- kt-suite-terraform: Destroy complete! Resources: 3 destroyed.[0m
+W, [2020-03-17T16:44:40.963597 #15873]  WARN -- kt-suite-terraform: Finished destroying the Terraform-managed infrastructure.
+W, [2020-03-17T16:44:40.963976 #15873]  WARN -- kt-suite-terraform: Selecting the default Terraform workspace...
+I, [2020-03-17T16:44:40.989742 #15873]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "default".[0m
+W, [2020-03-17T16:44:41.002254 #15873]  WARN -- kt-suite-terraform: Finished selecting the default Terraform workspace.
+W, [2020-03-17T16:44:41.002744 #15873]  WARN -- kt-suite-terraform: Deleting the kitchen-terraform-kt-suite-terraform Terraform workspace...
+I, [2020-03-17T16:44:41.030169 #15873]  INFO -- kt-suite-terraform: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-terraform"![0m
+W, [2020-03-17T16:44:41.044077 #15873]  WARN -- kt-suite-terraform: Finished deleting the kitchen-terraform-kt-suite-terraform Terraform workspace.
+I, [2020-03-17T16:44:41.045273 #15873]  INFO -- kt-suite-terraform: Finished destroying <kt-suite-terraform> (0m5.71s).

@@ -1,0 +1,12 @@
+I, [2020-03-17T18:08:21.300561 #24600]  INFO -- kt-suite-aws: -----> Verifying <kt-suite-aws>...
+I, [2020-03-17T18:08:21.301799 #24600]  INFO -- kt-suite-aws: [Awspec] Verify on instance=#<Kitchen::Instance:0x00005562361aee68> with state={:last_action=>"verify", :last_error=>"Kitchen::ActionFailed", :kitchen_terraform_outputs=>{}, :kitchen_terraform_variables=>{}}
+I, [2020-03-17T18:08:21.302352 #24600]  INFO -- kt-suite-aws: Environment variable KITCHEN_LAST_ACTION value verify
+I, [2020-03-17T18:08:21.302830 #24600]  INFO -- kt-suite-aws: Environment variable KITCHEN_LAST_ERROR value Kitchen::ActionFailed
+I, [2020-03-17T18:08:21.303314 #24600]  INFO -- kt-suite-aws: Environment variable KITCHEN_KITCHEN_TERRAFORM_OUTPUTS value {}
+I, [2020-03-17T18:08:21.303787 #24600]  INFO -- kt-suite-aws: Environment variable KITCHEN_KITCHEN_TERRAFORM_VARIABLES value {}
+I, [2020-03-17T18:08:21.304278 #24600]  INFO -- kt-suite-aws: Transport Environment variable KITCHEN_USERNAME value root
+I, [2020-03-17T18:08:21.304736 #24600]  INFO -- kt-suite-aws: Transport Environment variable KITCHEN_PORT value 22
+I, [2020-03-17T18:08:21.305199 #24600]  INFO -- kt-suite-aws: Installing bundler and awspec locally on workstation
+I, [2020-03-17T18:08:23.848576 #24600]  INFO -- kt-suite-aws: Running Awspec
+I, [2020-03-17T18:08:23.849440 #24600]  INFO -- kt-suite-aws: Running command: rspec -c -f documentation --default-path '/home/ubuntu/environment/test1'  -P 'test/integration/kt_suite/controls/bucket.rb'
+I, [2020-03-17T18:08:27.360854 #24600]  INFO -- kt-suite-aws: Finished verifying <kt-suite-aws> (0m6.06s).
