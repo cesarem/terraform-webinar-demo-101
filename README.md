@@ -7,7 +7,7 @@
 * [Terraform](https://www.terraform.io/) in the versions interval of >= 0.11.4, < 0.13.0 
 * [Kitchen-Terraform](https://github.com/newcontext-oss/kitchen-terraform)
 * [Ruby](https://www.ruby-lang.org/en/) in the versions interval of >= 2.4, < 2.7
-* [Bundler][bundler] should be used to manage versions of Kitchen-Terraform on the system.
+* [Bundler](https://bundler.io/index.html#getting-started) should be used to manage versions of Kitchen-Terraform on the system.
 * You must have an [Amazon Web Services (AWS) account](http://aws.amazon.com/).
 
 Note that this configuration was executed in a Linux Ubuntu machine, nonetheless, it can be easily ported to Windows.
