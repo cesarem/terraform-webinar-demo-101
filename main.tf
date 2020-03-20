@@ -13,20 +13,12 @@ resource "aws_s3_bucket" "flugel" {
   }
 }
 
-resource "aws_s3_bucket_object" "object_1" {
-  bucket = "${aws_s3_bucket.flugel.id}"
-  key    = "test1.txt"
-	content = "${timestamp()}"
-}
 
-resource "aws_s3_bucket_object" "object_2" {
-  bucket = "${aws_s3_bucket.flugel.id}"
-  key    = "test2.txt"
-	content = "${timestamp()}"
-}
-
+<<<<<<< HEAD
 output "bucket_id" {
   value = "${aws_s3_bucket.flugel.id}"
 }
 
 
+=======
+>>>>>>> c86bb90d9a89c71004539cb0d3e32e169be2dbb4
