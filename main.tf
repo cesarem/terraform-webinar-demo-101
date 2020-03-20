@@ -28,3 +28,5 @@ resource "aws_s3_bucket_object" "object_2" {
 output "bucket_id" {
   value = "${aws_s3_bucket.flugel.id}"
 }
+
+
