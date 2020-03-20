@@ -1,3 +1,3 @@
-I, [2020-03-17T18:20:31.000466 #25769]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
-I, [2020-03-17T18:20:31.410083 #25769]  INFO -- Kitchen: -----> Destroying <kt-suite-aws>...
-I, [2020-03-17T18:20:36.432795 #25769]  INFO -- Kitchen: -----> Test Kitchen is finished. (0m5.43s)
+I, [2020-03-20T13:17:41.080908 #10950]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
+I, [2020-03-20T13:17:41.606347 #10950]  INFO -- Kitchen: -----> Destroying <kt-suite-aws>...
+I, [2020-03-20T13:17:48.195734 #10950]  INFO -- Kitchen: -----> Test Kitchen is finished. (0m7.11s)
