@@ -16,11 +16,11 @@ Note that this configuration was executed in a Linux Ubuntu machine, nonetheless
 
 ### Terraform
 Kitchen-Terraform integrates with the
-[Terraform command-line interface][terraform-cli] to implement a Test
+[Terraform command-line interface](https://www.terraform.io/docs/commands/index.html) to implement a Test
 Kitchen workflow for Terraform modules.
 
 Installation instructions can be found in the
-[Terraform: Install Terraform][terraform-install] article.
+[Install Terraform](https://learn.hashicorp.com/terraform/getting-started/install.html) article.
 
 Kitchen-Terraform supports versions of Terraform in the interval of
 `>= 0.11.4, < 0.13.0`.
@@ -29,14 +29,14 @@ Kitchen-Terraform supports versions of Terraform in the interval of
 
 ### Ruby
 
-Kitchen-Terraform is written in [Ruby][ruby] which requires an
+Kitchen-Terraform is written in [Ruby](https://www.ruby-lang.org/en/) which requires an
 interpreter to be installed on the system.
 
 Installation instructions can be found in the
-[Ruby: Installing Ruby][ruby-installation] article.
+[Ruby: Installing Ruby](https://www.ruby-lang.org/en/documentation/installation/) article.
 
 Kitchen-Terraform aims to support all versions of Ruby that are in
-["normal" or "security" maintenance][ruby-branches], which is currently
+["normal" or "security" maintenance](https://www.ruby-lang.org/en/downloads/branches/), which is currently
 the interval of `>= 2.4, < 2.7`.
 
 #### Bundler
