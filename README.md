@@ -25,7 +25,7 @@ Installation instructions can be found in the
 Kitchen-Terraform supports versions of Terraform in the interval of
 `>= 0.11.4, < 0.13.0`.
 
-[tfenv] can be used to manage versions of Terraform on the system.
+[tfenv](https://github.com/kamatama41/tfenv) can be used to manage versions of Terraform on the system.
 
 ### Ruby
 
@@ -38,6 +38,8 @@ Installation instructions can be found in the
 Kitchen-Terraform aims to support all versions of Ruby that are in
 ["normal" or "security" maintenance](https://www.ruby-lang.org/en/downloads/branches/), which is currently
 the interval of `>= 2.4, < 2.7`.
+
+[rbenv](https://github.com/rbenv/rbenv) can be used to manage versions of Ruby on the system.
 
 #### Bundler
 After Ruby is installed run
@@ -83,7 +85,6 @@ variable "bucket_name" {
 ```
 terraform init
 terraform apply
-
 ```
 
 When the `apply` command completes, you should see the name of the bucket created, for instance:
