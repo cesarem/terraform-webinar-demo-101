@@ -30,3 +30,4 @@ override.tf.json
 
 # txt files
 *.txt
+Gemfile.lock
