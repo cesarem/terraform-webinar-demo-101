@@ -4,3 +4,6 @@ variable "bucket_name" {
 variable "alb_sg_name" {
   default = "flugel-alb-sg-1"
 }
+variable "instance_sg_name" {
+  default = "flugel-instance-sg-1"
+}

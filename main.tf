@@ -34,7 +34,8 @@ resource "aws_vpc" "main" {
   }
 }
 
-# Security Groups
+## Security Groups
+# application load balancer sg
 resource "aws_security_group" "alb_sg" {
   name          = "${var.alb_sg_name}"
   vpc_id        = "${aws_vpc.main.id}"
@@ -53,6 +54,20 @@ resource "aws_security_group" "alb_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+# instance sg
+resource "aws_security_group" "instance_sg" {
+  name          = "${var.instance_sg_name}"
+  vpc_id        = "${aws_vpc.main.id}"
+  tags = {
+    Name = "flugel_instance_web_traffic"
+  }
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
