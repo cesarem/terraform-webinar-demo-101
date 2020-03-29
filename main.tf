@@ -1,9 +1,11 @@
 provider "aws" {
-  version = "~> 2.0"
+  version = "~> 2.55"
   region  = "us-east-1"
 }
 
+###########
 # S3 bucket
+###########
 resource "aws_s3_bucket" "flugel" {
   bucket = "${var.bucket_name}"
   acl    = "private"
@@ -13,7 +15,10 @@ resource "aws_s3_bucket" "flugel" {
     Environment = "Dev"
   }
 }
+
+############
 # S3 Objects
+############
 resource "aws_s3_bucket_object" "object_1" {
   bucket = "${aws_s3_bucket.flugel.id}"
   key    = "test1.txt"
@@ -25,7 +30,9 @@ resource "aws_s3_bucket_object" "object_2" {
         content = "${timestamp()}"
 }
 
-## VPC
+#####
+# VPC
+#####
 resource "aws_vpc" "main" {
   cidr_block       = "10.0.0.0/16"
   
@@ -33,7 +40,10 @@ resource "aws_vpc" "main" {
     Name = "Flugel VPC"
   }
 }
-# Internet Gateway
+
+###################
+# Internet Gateways
+###################
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.main.id}"
 
@@ -42,7 +52,9 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
-# Route to Internet
+##############
+# Route Tables
+##############
 resource "aws_route_table" "inet" {
   vpc_id = "${aws_vpc.main.id}"
   route {
@@ -53,56 +65,145 @@ resource "aws_route_table" "inet" {
     Name = "Flugel Internet Route Table"
   }
 }
+
 # Route table association (to Internet)
 resource "aws_route_table_association" "pub_assoc" {
   subnet_id      = "${aws_subnet.public.id}"
   route_table_id = "${aws_route_table.inet.id}"
 }
-resource "aws_route_table_association" "priv_assoc" {
-  subnet_id      = "${aws_subnet.private.id}"
-  route_table_id = "${aws_route_table.inet.id}"
-}
 
 ## EC2 Instances
-resource "aws_launch_configuration" "cluster" {
-  image_id        = "ami-07ebfd5b3428b6f4d"
-  instance_type   = "t2.micro"
-  key_name        = "aws-ec2-servers"
-  associate_public_ip_address = true
-  security_groups = [aws_security_group.instance_sg.id]
+#resource "aws_launch_configuration" "public_cluster" {
+#  image_id        = "ami-08bc77a2c7eb2b1da"
+#  instance_type   = "t2.micro"
+#  key_name        = "aws-ec2-servers"
+#  associate_public_ip_address = true
+#  security_groups = [aws_security_group.instance_sg.id]
+#
+#  user_data = <<-EOF
+#              #!/bin/bash
+#              echo "Hello World!" > index.html
+#              nohup busybox httpd -f -p ${var.server_port} &
+#              EOF
+#
+#  # Required when using a launch configuration with an auto scaling group.
+#  # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
+#  lifecycle {
+#    create_before_destroy = true
+#  }
+#}
 
-  user_data = <<-EOF
+##################
+# Launch templates
+##################
+resource "aws_launch_template" "public_cluster" {
+  name_prefix   = "public_cluster"
+  image_id      = "ami-08bc77a2c7eb2b1da"
+  instance_type = "t2.micro"
+  key_name      = "aws-ec2-servers"
+  
+  user_data = base64encode('
               #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p ${var.server_port} &
-              EOF
-
-  # Required when using a launch configuration with an auto scaling group.
-  # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
-  lifecycle {
-    create_before_destroy = true
+              echo "Hello World! from public subnet" > index.html
+              nohup busybox httpd -f -p 8080 &
+              ')
+  
+  network_interfaces {
+    associate_public_ip_address = true
+    security_groups             = [aws_security_group.public_sg.id]
   }
+  
+  tags = {
+      Name = "Flugel Public Cluster"
+    }
 }
-# Auto scaling group
-resource "aws_autoscaling_group" "cluster" {
-  launch_configuration = "${aws_launch_configuration.cluster.name}"
-  vpc_zone_identifier  = ["${aws_subnet.public.id}", "${aws_subnet.private.id}"]
 
-  target_group_arns = [aws_lb_target_group.asg.arn]
-  health_check_type = "ELB"
+resource "aws_launch_template" "private_cluster" {
+  name_prefix   = "private_cluster"
+  image_id      = "ami-08bc77a2c7eb2b1da"
+  instance_type = "t2.micro"
+  key_name      = "aws-ec2-servers"
+  
+  user_data = base64encode('
+              #!/bin/bash
+              echo "Hello World! from private subnet" > index.html
+              nohup busybox httpd -f -p 8080 &
+              ')
+  
+  network_interfaces {
+    associate_public_ip_address = false
+    security_groups             = [aws_security_group.private_sg.id]
+  }
+  
+  tags = {
+      Name = "Flugel Private Cluster"
+    }
+}
 
-  min_size = 2
-  max_size = 2
+#####################
+# Auto scaling groups
+#####################
+resource "aws_autoscaling_group" "public_asg" {
+  vpc_zone_identifier = ["${aws_subnet.public.id}"]
+  target_group_arns   = [aws_lb_target_group.asg.arn]
+  health_check_type   = "ELB"
+  desired_capacity    = 1
+  max_size            = 1
+  min_size            = 1
 
+  launch_template {
+    id      = "${aws_launch_template.public_cluster.id}"
+    version = "$Latest"
+  }
+  
   tag {
     key                 = "Name"
-    value               = "flugel-asg-terraform"
+    value               = "flugel-public-asg"
     propagate_at_launch = true
   }
 }
 
-## Security Groups
-# application load balancer sg
+resource "aws_autoscaling_group" "private_asg" {
+  vpc_zone_identifier = ["${aws_subnet.private.id}"]
+  target_group_arns   = [aws_lb_target_group.asg.arn]
+  health_check_type   = "ELB"
+  desired_capacity    = 1
+  max_size            = 1
+  min_size            = 1
+
+  launch_template {
+    id      = "${aws_launch_template.private_cluster.id}"
+    version = "$Latest"
+  }
+  
+  tag {
+    key                 = "Name"
+    value               = "flugel-private-asg"
+    propagate_at_launch = true
+  }
+}
+
+# Auto scaling group
+#resource "aws_autoscaling_group" "public_cluster" {
+#  launch_configuration = "${aws_launch_configuration.public_cluster.name}"
+#  vpc_zone_identifier  = ["${aws_subnet.public.id}"]
+#
+#  target_group_arns = [aws_lb_target_group.asg.arn]
+#  health_check_type = "ELB"
+#
+#  min_size = 1
+#  max_size = 1
+#
+#  tag {
+#    key                 = "Name"
+#    value               = "flugel-public-asg"
+#    propagate_at_launch = true
+#  }
+#}
+
+#################
+# Security Groups
+#################
 resource "aws_security_group" "alb_sg" {
   name          = "${var.alb_sg_name}"
   vpc_id        = "${aws_vpc.main.id}"
@@ -124,12 +225,12 @@ resource "aws_security_group" "alb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-# instance security_group
-resource "aws_security_group" "instance_sg" {
-  name          = "${var.instance_sg_name}"
+
+resource "aws_security_group" "public_sg" {
+  name          = "public-sg-1"
   vpc_id        = "${aws_vpc.main.id}"
   tags = {
-    Name = "flugel_instance_web_traffic"
+    Name = "Flugel public sg traffic"
   }
   ingress {
     from_port   = 8080
@@ -137,10 +238,43 @@ resource "aws_security_group" "instance_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
-## Subnets
-# Private subnet
+resource "aws_security_group" "private_sg" {
+  name          = "private-sg-1"
+  vpc_id        = "${aws_vpc.main.id}"
+  tags = {
+    Name = "Flugel private sg traffic"
+  }
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+#########
+# Subnets
+#########
 resource "aws_subnet" "private" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.1.0/24"
@@ -148,8 +282,13 @@ resource "aws_subnet" "private" {
   tags = {
     Name = "Flugel private subnet"
   }
+  
+  timeouts {
+    create = "10m"
+    delete = "5m"
+  }
 }
-# Public subnet
+
 resource "aws_subnet" "public" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.0.0/24"
@@ -157,10 +296,16 @@ resource "aws_subnet" "public" {
   tags = {
     Name = "Flugel public subnet"
   }
+  
+  timeouts {
+    create = "10m"
+    delete = "5m"
+  }
 }
 
-## Application load balancer
-# alb
+################
+# Load Balancers
+################
 resource "aws_lb" "alb" {
   name               = "${var.alb_name}"
   internal           = false
