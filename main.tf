@@ -102,15 +102,12 @@ resource "aws_launch_template" "public_cluster" {
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
   
-  user_data = base64encode('
-              #!/bin/bash
-              echo "Hello World! from public subnet" > index.html
-              nohup busybox httpd -f -p 8080 &
-              ')
+  user_data = filebase64("${path.module}/pubws.sh")
   
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = [aws_security_group.public_sg.id]
+    delete_on_termination       = true
   }
   
   tags = {
@@ -124,15 +121,12 @@ resource "aws_launch_template" "private_cluster" {
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
   
-  user_data = base64encode('
-              #!/bin/bash
-              echo "Hello World! from private subnet" > index.html
-              nohup busybox httpd -f -p 8080 &
-              ')
+  user_data = filebase64("${path.module}/privws.sh")
   
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.private_sg.id]
+    delete_on_termination       = true
   }
   
   tags = {
