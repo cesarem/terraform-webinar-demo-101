@@ -86,27 +86,6 @@ resource "aws_route_table_association" "nat_assoc" {
   route_table_id = "${aws_route_table.nat.id}"
 }
 
-## EC2 Instances
-#resource "aws_launch_configuration" "public_cluster" {
-#  image_id        = "ami-08bc77a2c7eb2b1da"
-#  instance_type   = "t2.micro"
-#  key_name        = "aws-ec2-servers"
-#  associate_public_ip_address = true
-#  security_groups = [aws_security_group.instance_sg.id]
-#
-#  user_data = <<-EOF
-#              #!/bin/bash
-#              echo "Hello World!" > index.html
-#              nohup busybox httpd -f -p ${var.server_port} &
-#              EOF
-#
-#  # Required when using a launch configuration with an auto scaling group.
-#  # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
-
 ##################
 # Launch templates
 ##################
@@ -190,24 +169,6 @@ resource "aws_autoscaling_group" "private_asg" {
     propagate_at_launch = true
   }
 }
-
-# Auto scaling group
-#resource "aws_autoscaling_group" "public_cluster" {
-#  launch_configuration = "${aws_launch_configuration.public_cluster.name}"
-#  vpc_zone_identifier  = ["${aws_subnet.public.id}"]
-#
-#  target_group_arns = [aws_lb_target_group.asg.arn]
-#  health_check_type = "ELB"
-#
-#  min_size = 1
-#  max_size = 1
-#
-#  tag {
-#    key                 = "Name"
-#    value               = "flugel-public-asg"
-#    propagate_at_launch = true
-#  }
-#}
 
 #################
 # Security Groups
