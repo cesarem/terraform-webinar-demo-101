@@ -65,11 +65,25 @@ resource "aws_route_table" "inet" {
     Name = "Flugel Internet Route Table"
   }
 }
-
+resource "aws_route_table" "nat" {
+  vpc_id = "${aws_vpc.main.id}"
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_nat_gateway.natgw.id}"
+  }
+  tags = {
+    Name = "Flugel NAT Route Table"
+  }
+}
 # Route table association (to Internet)
 resource "aws_route_table_association" "pub_assoc" {
   subnet_id      = "${aws_subnet.public.id}"
   route_table_id = "${aws_route_table.inet.id}"
+}
+# Route table association NAT
+resource "aws_route_table_association" "nat_assoc" {
+  subnet_id      = "${aws_subnet.private.id}"
+  route_table_id = "${aws_route_table.nat.id}"
 }
 
 ## EC2 Instances
@@ -272,7 +286,8 @@ resource "aws_security_group" "private_sg" {
 resource "aws_subnet" "private" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.1.0/24"
-
+  availability_zone = "us-east-1b"
+  
   tags = {
     Name = "Flugel private subnet"
   }
@@ -286,6 +301,7 @@ resource "aws_subnet" "private" {
 resource "aws_subnet" "public" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.0.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "Flugel public subnet"
@@ -358,5 +374,30 @@ resource "aws_lb_listener_rule" "asg" {
   action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.asg.arn
+  }
+}
+
+#############
+# Elastic IPs
+#############
+resource "aws_eip" "natgw" {
+  vpc         = true
+  depends_on  = [aws_internet_gateway.gw]
+  
+  tags = {
+    Name = "Flugel EIP nat gw"
+  }
+  
+}
+
+##############
+# NAT Gateways
+##############
+resource "aws_nat_gateway" "natgw" {
+  allocation_id = "${aws_eip.natgw.id}"
+  subnet_id     = "${aws_subnet.public.id}"
+
+  tags = {
+    Name = "gw NAT"
   }
 }
