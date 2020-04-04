@@ -95,6 +95,10 @@ resource "aws_launch_template" "public_cluster" {
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
   
+  iam_instance_profile {
+    name = aws_iam_instance_profile.s3_access.name
+  }
+  
   user_data = filebase64("${path.module}/pubws.sh")
   
   network_interfaces {
@@ -113,6 +117,10 @@ resource "aws_launch_template" "private_cluster" {
   image_id      = "ami-08bc77a2c7eb2b1da"
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
+  
+  iam_instance_profile {
+    name = aws_iam_instance_profile.s3_access.name
+  }
   
   user_data = filebase64("${path.module}/privws.sh")
   
@@ -361,4 +369,67 @@ resource "aws_nat_gateway" "natgw" {
   tags = {
     Name = "gw NAT"
   }
+}
+
+###################
+# Instance Profiles
+###################
+resource "aws_iam_instance_profile" "s3_access" {
+  name = "s3_access_profile"
+  role = "${aws_iam_role.ec2_trusted_entity_to_s3.name}"
+}
+
+###########
+# IAM Roles
+###########
+resource "aws_iam_role" "ec2_trusted_entity_to_s3" {
+  name = "ec2_trusted_entity_to_s3"
+  path = "/"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+###################
+# Policy attachment
+###################
+resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
+    role = "${aws_iam_role.ec2_trusted_entity_to_s3.name}"
+    #policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+    policy_arn = "${aws_iam_policy.s3_policy.arn}"
+}
+
+############
+# IAM Policy
+############
+resource "aws_iam_policy" "s3_policy" {
+  name        = "flugel-s3-policy"
+  description = "Especific policy to get acces to bucket ${var.bucket_name}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:Get*",
+        "s3:List*"
+      ],
+      "Resource": "${aws_s3_bucket.flugel.arn}"
+    }
+  ]
+}
+EOF
 }
