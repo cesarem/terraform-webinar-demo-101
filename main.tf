@@ -433,3 +433,9 @@ resource "aws_iam_policy" "s3_policy" {
 }
 EOF
 }
+
+##############
+# Data sources
+##############
+# Not sure yet if this is necesary
+data "aws_caller_identity" "current" {}
