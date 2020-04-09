@@ -210,8 +210,8 @@ resource "aws_security_group" "public_sg" {
     Name = "Flugel public sg traffic"
   }
   ingress {
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = var.server_port
+    to_port     = var.server_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -236,8 +236,8 @@ resource "aws_security_group" "private_sg" {
     Name = "Flugel private sg traffic"
   }
   ingress {
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = var.server_port
+    to_port     = var.server_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -433,9 +433,3 @@ resource "aws_iam_policy" "s3_policy" {
 }
 EOF
 }
-
-##############
-# Data sources
-##############
-# Not sure yet if this is necesary
-data "aws_caller_identity" "current" {}
