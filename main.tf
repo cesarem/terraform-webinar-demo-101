@@ -1,6 +1,6 @@
 provider "aws" {
   version = "~> 2.55"
-  region  = "us-east-1"
+  region  = "${var.region}"
 }
 
 ###########
@@ -8,7 +8,7 @@ provider "aws" {
 ###########
 resource "aws_s3_bucket" "flugel" {
   bucket = "${var.bucket_name}"
-  acl    = "public-read"
+  acl    = "private"
 
   tags = {
     Name        = "Flugel Test"
@@ -91,15 +91,15 @@ resource "aws_route_table_association" "nat_assoc" {
 ##################
 resource "aws_launch_template" "public_cluster" {
   name_prefix   = "public_cluster"
-  image_id      = "ami-0323c3dd2da7fb37d"
-  instance_type = "t2.micro"
-  key_name      = "aws-ec2-servers"
+  image_id      = "${var.ec2_image_id}"
+  instance_type = "${var.instance_type}"
+  key_name      = "${var.ssh_key}"
   
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
   
-  user_data = filebase64("${path.module}/pubws.sh")
+  user_data = filebase64(templatefile("${path.module}/reverse-proxy.sh",local.env_vars))
   
   network_interfaces {
     associate_public_ip_address = true
@@ -114,15 +114,15 @@ resource "aws_launch_template" "public_cluster" {
 
 resource "aws_launch_template" "private_cluster" {
   name_prefix   = "private_cluster"
-  image_id      = "ami-0323c3dd2da7fb37d"
-  instance_type = "t2.micro"
-  key_name      = "aws-ec2-servers"
+  image_id      = "${var.ec2_image_id}"
+  instance_type = "${var.instance_type}"
+  key_name      = "${var.ssh_key}"
   
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
   
-  user_data = filebase64("${path.module}/privws.sh")
+  user_data = filebase64(templatefile("${path.module}/reverse-proxy.sh",local.env_vars))
   
   network_interfaces {
     associate_public_ip_address = false
@@ -139,12 +139,13 @@ resource "aws_launch_template" "private_cluster" {
 # Auto scaling groups
 #####################
 resource "aws_autoscaling_group" "public_asg" {
-  vpc_zone_identifier = ["${aws_subnet.public.id}"]
-  target_group_arns   = [aws_lb_target_group.asg.arn]
-  health_check_type   = "ELB"
-  desired_capacity    = 1
-  max_size            = 1
-  min_size            = 1
+  vpc_zone_identifier       = ["${aws_subnet.public.id}"]
+  target_group_arns         = [aws_lb_target_group.asg.arn]
+  health_check_grace_period = 600
+  health_check_type         = "EC2"
+  desired_capacity          = 1
+  max_size                  = 1
+  min_size                  = 1
 
   launch_template {
     id      = "${aws_launch_template.public_cluster.id}"
@@ -159,12 +160,13 @@ resource "aws_autoscaling_group" "public_asg" {
 }
 
 resource "aws_autoscaling_group" "private_asg" {
-  vpc_zone_identifier = ["${aws_subnet.private.id}"]
-  target_group_arns   = [aws_lb_target_group.asg.arn]
-  health_check_type   = "ELB"
-  desired_capacity    = 1
-  max_size            = 1
-  min_size            = 1
+  vpc_zone_identifier       = ["${aws_subnet.private.id}"]
+  target_group_arns         = [aws_lb_target_group.asg.arn]
+  health_check_grace_period = 600
+  health_check_type         = "EC2"
+  desired_capacity          = 1
+  max_size                  = 1
+  min_size                  = 1
 
   launch_template {
     id      = "${aws_launch_template.private_cluster.id}"
@@ -255,7 +257,7 @@ resource "aws_security_group" "private_sg" {
 resource "aws_subnet" "private" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "${var.region}b"
   
   tags = {
     Name = "Flugel private subnet"
@@ -270,7 +272,7 @@ resource "aws_subnet" "private" {
 resource "aws_subnet" "public" {
   vpc_id     = "${aws_vpc.main.id}"
   cidr_block = "10.0.0.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.region}a"
 
   tags = {
     Name = "Flugel public subnet"
