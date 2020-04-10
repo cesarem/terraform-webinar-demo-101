@@ -8,7 +8,7 @@ provider "aws" {
 ###########
 resource "aws_s3_bucket" "flugel" {
   bucket = "${var.bucket_name}"
-  acl    = "private"
+  acl    = "public-read"
 
   tags = {
     Name        = "Flugel Test"
@@ -91,7 +91,7 @@ resource "aws_route_table_association" "nat_assoc" {
 ##################
 resource "aws_launch_template" "public_cluster" {
   name_prefix   = "public_cluster"
-  image_id      = "ami-08bc77a2c7eb2b1da"
+  image_id      = "ami-0323c3dd2da7fb37d"
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
   
@@ -114,7 +114,7 @@ resource "aws_launch_template" "public_cluster" {
 
 resource "aws_launch_template" "private_cluster" {
   name_prefix   = "private_cluster"
-  image_id      = "ami-08bc77a2c7eb2b1da"
+  image_id      = "ami-0323c3dd2da7fb37d"
   instance_type = "t2.micro"
   key_name      = "aws-ec2-servers"
   
