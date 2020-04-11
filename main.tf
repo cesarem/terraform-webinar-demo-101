@@ -11,8 +11,7 @@ resource "aws_s3_bucket" "flugel" {
   acl    = "private"
 
   tags = {
-    Name        = "Flugel Test"
-    Environment = "Dev"
+    Name = "flugel-test1-bucket"
   }
 }
 
@@ -94,17 +93,17 @@ resource "aws_launch_template" "public_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
-  depends_on    = [data.local_file.init]
+  depends_on    = ["data.local_file.init"]
   
   iam_instance_profile {
-    name = aws_iam_instance_profile.s3_access.name
+    name = "${aws_iam_instance_profile.s3_access.name}"
   }
   
   user_data = "${data.local_file.init.content_base64}"
   
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [aws_security_group.public_sg.id]
+    security_groups             = ["${aws_security_group.public_sg.id}"]
     delete_on_termination       = true
   }
   
@@ -118,17 +117,17 @@ resource "aws_launch_template" "private_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
-  depends_on    = [data.local_file.init]
+  depends_on    = ["data.local_file.init"]
   
   iam_instance_profile {
-    name = aws_iam_instance_profile.s3_access.name
+    name = "${aws_iam_instance_profile.s3_access.name}"
   }
   
   user_data = "${data.local_file.init.content_base64}"
   
   network_interfaces {
     associate_public_ip_address = false
-    security_groups             = [aws_security_group.private_sg.id]
+    security_groups             = ["${aws_security_group.private_sg.id}"]
     delete_on_termination       = true
   }
   
@@ -142,7 +141,7 @@ resource "aws_launch_template" "private_cluster" {
 #####################
 resource "aws_autoscaling_group" "public_asg" {
   vpc_zone_identifier       = ["${aws_subnet.public.id}"]
-  target_group_arns         = [aws_lb_target_group.asg.arn]
+  target_group_arns         = ["${aws_lb_target_group.asg.arn}"]
   health_check_grace_period = 600
   health_check_type         = "EC2"
   desired_capacity          = 1
@@ -163,7 +162,7 @@ resource "aws_autoscaling_group" "public_asg" {
 
 resource "aws_autoscaling_group" "private_asg" {
   vpc_zone_identifier       = ["${aws_subnet.private.id}"]
-  target_group_arns         = [aws_lb_target_group.asg.arn]
+  target_group_arns         = ["${aws_lb_target_group.asg.arn}"]
   health_check_grace_period = 600
   health_check_type         = "EC2"
   desired_capacity          = 1
@@ -214,8 +213,8 @@ resource "aws_security_group" "public_sg" {
     Name = "Flugel public sg traffic"
   }
   ingress {
-    from_port   = var.server_port
-    to_port     = var.server_port
+    from_port   = "${var.server_port}"
+    to_port     = "${var.server_port}"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -240,8 +239,8 @@ resource "aws_security_group" "private_sg" {
     Name = "Flugel private sg traffic"
   }
   ingress {
-    from_port   = var.server_port
-    to_port     = var.server_port
+    from_port   = "${var.server_port}"
+    to_port     = "${var.server_port}"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -302,7 +301,7 @@ resource "aws_lb" "alb" {
 }
 # HTTP listener
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.alb.arn
+  load_balancer_arn = "${aws_lb.alb.arn}"
   port              = 80
   protocol          = "HTTP"
 
@@ -319,8 +318,8 @@ resource "aws_lb_listener" "http" {
 }
 # Target group
 resource "aws_lb_target_group" "asg" {
-  name      = aws_lb.alb.name
-  port      = var.server_port
+  name      = "${aws_lb.alb.name}"
+  port      = "${var.server_port}"
   protocol  = "HTTP"
   vpc_id    = "${aws_vpc.main.id}"
 
@@ -336,7 +335,7 @@ resource "aws_lb_target_group" "asg" {
 }
 # Listener rule
 resource "aws_lb_listener_rule" "asg" {
-  listener_arn = aws_lb_listener.http.arn
+  listener_arn = "${aws_lb_listener.http.arn}"
   priority     = 100
 
   condition {
@@ -346,7 +345,7 @@ resource "aws_lb_listener_rule" "asg" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.asg.arn
+    target_group_arn = "${aws_lb_target_group.asg.arn}"
   }
 }
 
@@ -355,7 +354,7 @@ resource "aws_lb_listener_rule" "asg" {
 #############
 resource "aws_eip" "natgw" {
   vpc         = true
-  depends_on  = [aws_internet_gateway.gw]
+  depends_on  = ["aws_internet_gateway.gw"]
   
   tags = {
     Name = "Flugel EIP nat gw"
@@ -387,23 +386,23 @@ resource "aws_iam_instance_profile" "s3_access" {
 # IAM Roles
 ###########
 resource "aws_iam_role" "ec2_trusted_entity_to_s3" {
-  name = "ec2_trusted_entity_to_s3"
-  path = "/"
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
+  name                = "ec2_trusted_entity_to_s3"
+  path                = "/"
+  assume_role_policy  = "${data.aws_iam_policy_document.ec2_assume_role.json}"
+#  assume_role_policy = <<EOF
+#{
+#  "Version": "2012-10-17",
+#  "Statement": [
+#    {
+#      "Effect": "Allow",
+#      "Principal": {
+#        "Service": "ec2.amazonaws.com"
+#      },
+#      "Action": "sts:AssumeRole"
+#    }
+#  ]
+#}
+#EOF
 }
 ###################
 # Policy attachment
@@ -420,30 +419,30 @@ resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
 resource "aws_iam_policy" "s3_policy" {
   name        = "flugel-s3-policy"
   description = "Especific policy to get acces to bucket ${var.bucket_name}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:Get*",
-        "s3:List*"
-      ],
-      "Resource": "${aws_s3_bucket.flugel.arn}/*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:Get*",
-        "s3:List*"
-      ],
-      "Resource": "${aws_s3_bucket.flugel.arn}"
-    }
-  ]
-}
-EOF
+  policy      = "${data.aws_iam_policy_document.s3_access_policy.json}"
+#  policy = <<EOF
+#{
+#  "Version": "2012-10-17",
+#  "Statement": [
+#    {
+#      "Effect": "Allow",
+#      "Action": [
+#        "s3:Get*",
+#        "s3:List*"
+#      ],
+#      "Resource": "${aws_s3_bucket.flugel.arn}/*"
+#    },
+#    {
+#      "Effect": "Allow",
+#      "Action": [
+#        "s3:Get*",
+#        "s3:List*"
+#      ],
+#      "Resource": "${aws_s3_bucket.flugel.arn}"
+#    }
+#  ]
+#}
+#EOF
 }
 
 ##############
@@ -451,10 +450,44 @@ EOF
 ##############
 data "local_file" "init" {
     filename = "${path.module}/init.sh"
-    depends_on = [local_file.init]
+    depends_on = ["local_file.init"]
+}
+resource "local_file" "init" {
+  content   = templatefile("${path.module}/init.tpl", "${local.env_vars}")
+  filename  = "${path.module}/init.sh"
 }
 
-resource "local_file" "init" {
-  content   = templatefile("${path.module}/init.tpl", local.env_vars)
-  filename  = "${path.module}/init.sh"
+# Bucket policy data source
+data "aws_iam_policy_document" "s3_access_policy" {
+  statement {
+    sid = "1"
+    
+    effect = "Allow"
+    
+    actions = [
+      "s3:Get*",
+      "s3:List*"
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.bucket_name}",
+      "arn:aws:s3:::${var.bucket_name}/*"
+    ]
+  }
+}
+
+# Asume role policy data source
+data "aws_iam_policy_document" "ec2_assume_role" {
+  statement {
+    sid = ""
+    
+    effect = "Allow"
+    
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
 }
