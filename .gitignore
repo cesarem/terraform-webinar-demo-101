@@ -37,3 +37,6 @@ override.tf.json
 Gemfile.lock
 .kitchen/logs/kitchen.log
 .kitchen/logs/kt-suite-aws.log
+
+# sh files
+init.sh
