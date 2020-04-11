@@ -22,12 +22,12 @@ resource "aws_s3_bucket" "flugel" {
 resource "aws_s3_bucket_object" "object_1" {
   bucket = "${aws_s3_bucket.flugel.id}"
   key    = "test1.txt"
-        content = "${timestamp()}"
+  content = "${timestamp()}"
 }
 resource "aws_s3_bucket_object" "object_2" {
   bucket = "${aws_s3_bucket.flugel.id}"
   key    = "test2.txt"
-        content = "${timestamp()}"
+  content = "${timestamp()}"
 }
 
 #####
@@ -94,12 +94,13 @@ resource "aws_launch_template" "public_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
+  depends_on    = [data.local_file.init]
   
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
   
-  user_data = filebase64(templatefile("${path.module}/reverse-proxy.sh",local.env_vars))
+  user_data = "${data.local_file.init.content_base64}"
   
   network_interfaces {
     associate_public_ip_address = true
@@ -117,12 +118,13 @@ resource "aws_launch_template" "private_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
+  depends_on    = [data.local_file.init]
   
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
   
-  user_data = filebase64(templatefile("${path.module}/reverse-proxy.sh",local.env_vars))
+  user_data = "${data.local_file.init.content_base64}"
   
   network_interfaces {
     associate_public_ip_address = false
@@ -429,9 +431,30 @@ resource "aws_iam_policy" "s3_policy" {
         "s3:Get*",
         "s3:List*"
       ],
+      "Resource": "${aws_s3_bucket.flugel.arn}/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:Get*",
+        "s3:List*"
+      ],
       "Resource": "${aws_s3_bucket.flugel.arn}"
     }
   ]
 }
 EOF
+}
+
+##############
+# Data sources
+##############
+data "local_file" "init" {
+    filename = "${path.module}/init.sh"
+    depends_on = [local_file.init]
+}
+
+resource "local_file" "init" {
+  content   = templatefile("${path.module}/init.tpl", local.env_vars)
+  filename  = "${path.module}/init.sh"
 }

@@ -21,8 +21,9 @@ variable "server_port" {
 }
 variable "ec2_image_id" {
   description = "instance image id"
-  # default     = "ami-0323c3dd2da7fb37d" amz linux 2
-  default     = "ami-00043ff468d078003" # ecs with docker
+  #default     = "ami-0323c3dd2da7fb37d" #amz linux 2
+  # default     = "ami-00043ff468d078003" # ecs with docker
+  default     = "ami-31f1d94a" # Ubuntu Complete with docker and docker-compose
 }
 variable "instance_type" {
   description = "instance image id"
