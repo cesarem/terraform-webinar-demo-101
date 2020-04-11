@@ -1,59 +1,56 @@
-I, [2020-03-20T13:17:41.606411 #10950]  INFO -- kt-suite-aws: -----> Destroying <kt-suite-aws>...
-W, [2020-03-20T13:17:41.607317 #10950]  WARN -- kt-suite-aws: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
-W, [2020-03-20T13:17:41.607867 #10950]  WARN -- kt-suite-aws: Reading the Terraform client version...
-I, [2020-03-20T13:17:41.842461 #10950]  INFO -- kt-suite-aws: Terraform v0.12.23
-I, [2020-03-20T13:17:43.525598 #10950]  INFO -- kt-suite-aws: + provider.aws v2.54.0
-I, [2020-03-20T13:17:43.527259 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.527297 #10950]  INFO -- kt-suite-aws: Your version of Terraform is out of date! The latest version
-I, [2020-03-20T13:17:43.530328 #10950]  INFO -- kt-suite-aws: is 0.12.24. You can update by downloading from https://www.terraform.io/downloads.html
-W, [2020-03-20T13:17:43.554154 #10950]  WARN -- kt-suite-aws: Finished reading the Terraform client version.
-W, [2020-03-20T13:17:43.555016 #10950]  WARN -- kt-suite-aws: Finished verifying the Terraform client version.
-W, [2020-03-20T13:17:43.555481 #10950]  WARN -- kt-suite-aws: Initializing the Terraform working directory...
-I, [2020-03-20T13:17:43.584190 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing modules...[0m
-I, [2020-03-20T13:17:43.588053 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.588718 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing the backend...[0m
-I, [2020-03-20T13:17:43.594876 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.597778 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing provider plugins...[0m
-I, [2020-03-20T13:17:44.142484 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:44.143454 #10950]  INFO -- kt-suite-aws: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
-W, [2020-03-20T13:17:44.156721 #10950]  WARN -- kt-suite-aws: Finished initializing the Terraform working directory.
-W, [2020-03-20T13:17:44.157189 #10950]  WARN -- kt-suite-aws: Selecting the kitchen-terraform-kt-suite-aws Terraform workspace...
-W, [2020-03-20T13:17:44.194322 #10950]  WARN -- kt-suite-aws: Finished selecting the kitchen-terraform-kt-suite-aws Terraform workspace.
-W, [2020-03-20T13:17:44.195064 #10950]  WARN -- kt-suite-aws: Destroying the Terraform-managed infrastructure...
-I, [2020-03-20T13:17:46.326360 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
-I, [2020-03-20T13:17:46.788849 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Refreshing state... [id=test2.txt][0m
-I, [2020-03-20T13:17:46.792773 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Refreshing state... [id=test1.txt][0m
-I, [2020-03-20T13:17:47.663417 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destroying... [id=test1.txt][0m[0m
-I, [2020-03-20T13:17:47.663483 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destroying... [id=test2.txt][0m[0m
-I, [2020-03-20T13:17:47.690709 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:47.706125 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:47.711421 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
-I, [2020-03-20T13:17:48.074688 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:48.089429 #10950]  INFO -- kt-suite-aws: [33m
-I, [2020-03-20T13:17:48.089478 #10950]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
-I, [2020-03-20T13:17:48.089499 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089517 #10950]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 7, in resource "aws_s3_bucket" "flugel":
-I, [2020-03-20T13:17:48.089575 #10950]  INFO -- kt-suite-aws:    7:   bucket = [4m"${var.bucket_name}"[0m
-I, [2020-03-20T13:17:48.089594 #10950]  INFO -- kt-suite-aws: [0m
-I, [2020-03-20T13:17:48.089612 #10950]  INFO -- kt-suite-aws: Terraform 0.11 and earlier required all non-constant expressions to be
-I, [2020-03-20T13:17:48.089633 #10950]  INFO -- kt-suite-aws: provided via interpolation syntax, but this pattern is now deprecated. To
-I, [2020-03-20T13:17:48.089655 #10950]  INFO -- kt-suite-aws: silence this warning, remove the "${ sequence from the start and the }"
-I, [2020-03-20T13:17:48.089671 #10950]  INFO -- kt-suite-aws: sequence from the end of this expression, leaving just the inner expression.
-I, [2020-03-20T13:17:48.089686 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089700 #10950]  INFO -- kt-suite-aws: Template interpolation syntax is still used to construct strings from
-I, [2020-03-20T13:17:48.089719 #10950]  INFO -- kt-suite-aws: expressions when the template includes multiple interpolation sequences or a
-I, [2020-03-20T13:17:48.089735 #10950]  INFO -- kt-suite-aws: mixture of literal strings and interpolations. This deprecation applies only
-I, [2020-03-20T13:17:48.089750 #10950]  INFO -- kt-suite-aws: to templates that consist entirely of a single interpolation sequence.
-I, [2020-03-20T13:17:48.089763 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089777 #10950]  INFO -- kt-suite-aws: (and 4 more similar warnings elsewhere)
-I, [2020-03-20T13:17:48.089792 #10950]  INFO -- kt-suite-aws: [0m[0m
-I, [2020-03-20T13:17:48.089807 #10950]  INFO -- kt-suite-aws: [0m[1m[32m
-I, [2020-03-20T13:17:48.089825 #10950]  INFO -- kt-suite-aws: Destroy complete! Resources: 3 destroyed.[0m
-W, [2020-03-20T13:17:48.110818 #10950]  WARN -- kt-suite-aws: Finished destroying the Terraform-managed infrastructure.
-W, [2020-03-20T13:17:48.111352 #10950]  WARN -- kt-suite-aws: Selecting the default Terraform workspace...
-I, [2020-03-20T13:17:48.137516 #10950]  INFO -- kt-suite-aws: [0m[32mSwitched to workspace "default".[0m
-W, [2020-03-20T13:17:48.151742 #10950]  WARN -- kt-suite-aws: Finished selecting the default Terraform workspace.
-W, [2020-03-20T13:17:48.152286 #10950]  WARN -- kt-suite-aws: Deleting the kitchen-terraform-kt-suite-aws Terraform workspace...
-I, [2020-03-20T13:17:48.180680 #10950]  INFO -- kt-suite-aws: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-aws"![0m
-W, [2020-03-20T13:17:48.193751 #10950]  WARN -- kt-suite-aws: Finished deleting the kitchen-terraform-kt-suite-aws Terraform workspace.
-I, [2020-03-20T13:17:48.194916 #10950]  INFO -- kt-suite-aws: Finished destroying <kt-suite-aws> (0m6.59s).
+I, [2020-04-11T15:59:37.381311 #6882]  INFO -- kt-suite-aws: -----> Destroying <kt-suite-aws>...
+W, [2020-04-11T15:59:37.381983 #6882]  WARN -- kt-suite-aws: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
+W, [2020-04-11T15:59:37.382267 #6882]  WARN -- kt-suite-aws: Reading the Terraform client version...
+I, [2020-04-11T15:59:37.411702 #6882]  INFO -- kt-suite-aws: Terraform v0.12.24
+I, [2020-04-11T15:59:37.944672 #6882]  INFO -- kt-suite-aws: + provider.aws v2.57.0
+W, [2020-04-11T15:59:37.967940 #6882]  WARN -- kt-suite-aws: Finished reading the Terraform client version.
+W, [2020-04-11T15:59:37.968142 #6882]  WARN -- kt-suite-aws: Finished verifying the Terraform client version.
+W, [2020-04-11T15:59:37.969574 #6882]  WARN -- kt-suite-aws: Initializing the Terraform working directory...
+I, [2020-04-11T15:59:37.995916 #6882]  INFO -- kt-suite-aws: [0m[1mInitializing modules...[0m
+I, [2020-04-11T15:59:38.000294 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:38.000685 #6882]  INFO -- kt-suite-aws: [0m[1mInitializing the backend...[0m
+I, [2020-04-11T15:59:38.003523 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:38.003909 #6882]  INFO -- kt-suite-aws: [0m[1mInitializing provider plugins...[0m
+I, [2020-04-11T15:59:38.537917 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:38.538687 #6882]  INFO -- kt-suite-aws: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+W, [2020-04-11T15:59:38.551033 #6882]  WARN -- kt-suite-aws: Finished initializing the Terraform working directory.
+W, [2020-04-11T15:59:38.551096 #6882]  WARN -- kt-suite-aws: Selecting the kitchen-terraform-kt-suite-aws Terraform workspace...
+W, [2020-04-11T15:59:38.587160 #6882]  WARN -- kt-suite-aws: Finished selecting the kitchen-terraform-kt-suite-aws Terraform workspace.
+W, [2020-04-11T15:59:38.587255 #6882]  WARN -- kt-suite-aws: Destroying the Terraform-managed infrastructure...
+I, [2020-04-11T15:59:40.347842 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
+I, [2020-04-11T15:59:40.813370 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Refreshing state... [id=test1.txt][0m
+I, [2020-04-11T15:59:40.814888 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Refreshing state... [id=test2.txt][0m
+I, [2020-04-11T15:59:41.688236 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destroying... [id=test2.txt][0m[0m
+I, [2020-04-11T15:59:41.688295 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destroying... [id=test1.txt][0m[0m
+I, [2020-04-11T15:59:41.713693 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:59:41.716431 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:59:41.722855 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
+I, [2020-04-11T15:59:41.844865 #6882]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:59:41.855884 #6882]  INFO -- kt-suite-aws: [33m
+I, [2020-04-11T15:59:41.855934 #6882]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+I, [2020-04-11T15:59:41.855956 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:41.855971 #6882]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 7, in resource "aws_s3_bucket" "flugel":
+I, [2020-04-11T15:59:41.855984 #6882]  INFO -- kt-suite-aws:    7:   bucket = [4m"${var.bucket_name}"[0m
+I, [2020-04-11T15:59:41.856002 #6882]  INFO -- kt-suite-aws: [0m
+I, [2020-04-11T15:59:41.856016 #6882]  INFO -- kt-suite-aws: Terraform 0.11 and earlier required all non-constant expressions to be
+I, [2020-04-11T15:59:41.856030 #6882]  INFO -- kt-suite-aws: provided via interpolation syntax, but this pattern is now deprecated. To
+I, [2020-04-11T15:59:41.856048 #6882]  INFO -- kt-suite-aws: silence this warning, remove the "${ sequence from the start and the }"
+I, [2020-04-11T15:59:41.856066 #6882]  INFO -- kt-suite-aws: sequence from the end of this expression, leaving just the inner expression.
+I, [2020-04-11T15:59:41.856079 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:41.856092 #6882]  INFO -- kt-suite-aws: Template interpolation syntax is still used to construct strings from
+I, [2020-04-11T15:59:41.856105 #6882]  INFO -- kt-suite-aws: expressions when the template includes multiple interpolation sequences or a
+I, [2020-04-11T15:59:41.856116 #6882]  INFO -- kt-suite-aws: mixture of literal strings and interpolations. This deprecation applies only
+I, [2020-04-11T15:59:41.859928 #6882]  INFO -- kt-suite-aws: to templates that consist entirely of a single interpolation sequence.
+I, [2020-04-11T15:59:41.859963 #6882]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:59:41.859987 #6882]  INFO -- kt-suite-aws: (and 4 more similar warnings elsewhere)
+I, [2020-04-11T15:59:41.860001 #6882]  INFO -- kt-suite-aws: [0m[0m
+I, [2020-04-11T15:59:41.860014 #6882]  INFO -- kt-suite-aws: [0m[1m[32m
+I, [2020-04-11T15:59:41.860029 #6882]  INFO -- kt-suite-aws: Destroy complete! Resources: 3 destroyed.[0m
+W, [2020-04-11T15:59:41.873877 #6882]  WARN -- kt-suite-aws: Finished destroying the Terraform-managed infrastructure.
+W, [2020-04-11T15:59:41.874210 #6882]  WARN -- kt-suite-aws: Selecting the default Terraform workspace...
+I, [2020-04-11T15:59:41.901799 #6882]  INFO -- kt-suite-aws: [0m[32mSwitched to workspace "default".[0m
+W, [2020-04-11T15:59:41.925272 #6882]  WARN -- kt-suite-aws: Finished selecting the default Terraform workspace.
+W, [2020-04-11T15:59:41.925664 #6882]  WARN -- kt-suite-aws: Deleting the kitchen-terraform-kt-suite-aws Terraform workspace...
+I, [2020-04-11T15:59:41.955002 #6882]  INFO -- kt-suite-aws: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-aws"![0m
+W, [2020-04-11T15:59:41.977361 #6882]  WARN -- kt-suite-aws: Finished deleting the kitchen-terraform-kt-suite-aws Terraform workspace.
+I, [2020-04-11T15:59:41.978092 #6882]  INFO -- kt-suite-aws: Finished destroying <kt-suite-aws> (0m4.60s).
