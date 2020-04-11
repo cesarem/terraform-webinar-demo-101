@@ -1,59 +1,194 @@
-I, [2020-03-20T13:17:41.606411 #10950]  INFO -- kt-suite-aws: -----> Destroying <kt-suite-aws>...
-W, [2020-03-20T13:17:41.607317 #10950]  WARN -- kt-suite-aws: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
-W, [2020-03-20T13:17:41.607867 #10950]  WARN -- kt-suite-aws: Reading the Terraform client version...
-I, [2020-03-20T13:17:41.842461 #10950]  INFO -- kt-suite-aws: Terraform v0.12.23
-I, [2020-03-20T13:17:43.525598 #10950]  INFO -- kt-suite-aws: + provider.aws v2.54.0
-I, [2020-03-20T13:17:43.527259 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.527297 #10950]  INFO -- kt-suite-aws: Your version of Terraform is out of date! The latest version
-I, [2020-03-20T13:17:43.530328 #10950]  INFO -- kt-suite-aws: is 0.12.24. You can update by downloading from https://www.terraform.io/downloads.html
-W, [2020-03-20T13:17:43.554154 #10950]  WARN -- kt-suite-aws: Finished reading the Terraform client version.
-W, [2020-03-20T13:17:43.555016 #10950]  WARN -- kt-suite-aws: Finished verifying the Terraform client version.
-W, [2020-03-20T13:17:43.555481 #10950]  WARN -- kt-suite-aws: Initializing the Terraform working directory...
-I, [2020-03-20T13:17:43.584190 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing modules...[0m
-I, [2020-03-20T13:17:43.588053 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.588718 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing the backend...[0m
-I, [2020-03-20T13:17:43.594876 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:43.597778 #10950]  INFO -- kt-suite-aws: [0m[1mInitializing provider plugins...[0m
-I, [2020-03-20T13:17:44.142484 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:44.143454 #10950]  INFO -- kt-suite-aws: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
-W, [2020-03-20T13:17:44.156721 #10950]  WARN -- kt-suite-aws: Finished initializing the Terraform working directory.
-W, [2020-03-20T13:17:44.157189 #10950]  WARN -- kt-suite-aws: Selecting the kitchen-terraform-kt-suite-aws Terraform workspace...
-W, [2020-03-20T13:17:44.194322 #10950]  WARN -- kt-suite-aws: Finished selecting the kitchen-terraform-kt-suite-aws Terraform workspace.
-W, [2020-03-20T13:17:44.195064 #10950]  WARN -- kt-suite-aws: Destroying the Terraform-managed infrastructure...
-I, [2020-03-20T13:17:46.326360 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
-I, [2020-03-20T13:17:46.788849 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Refreshing state... [id=test2.txt][0m
-I, [2020-03-20T13:17:46.792773 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Refreshing state... [id=test1.txt][0m
-I, [2020-03-20T13:17:47.663417 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destroying... [id=test1.txt][0m[0m
-I, [2020-03-20T13:17:47.663483 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destroying... [id=test2.txt][0m[0m
-I, [2020-03-20T13:17:47.690709 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:47.706125 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:47.711421 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
-I, [2020-03-20T13:17:48.074688 #10950]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
-I, [2020-03-20T13:17:48.089429 #10950]  INFO -- kt-suite-aws: [33m
-I, [2020-03-20T13:17:48.089478 #10950]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
-I, [2020-03-20T13:17:48.089499 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089517 #10950]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 7, in resource "aws_s3_bucket" "flugel":
-I, [2020-03-20T13:17:48.089575 #10950]  INFO -- kt-suite-aws:    7:   bucket = [4m"${var.bucket_name}"[0m
-I, [2020-03-20T13:17:48.089594 #10950]  INFO -- kt-suite-aws: [0m
-I, [2020-03-20T13:17:48.089612 #10950]  INFO -- kt-suite-aws: Terraform 0.11 and earlier required all non-constant expressions to be
-I, [2020-03-20T13:17:48.089633 #10950]  INFO -- kt-suite-aws: provided via interpolation syntax, but this pattern is now deprecated. To
-I, [2020-03-20T13:17:48.089655 #10950]  INFO -- kt-suite-aws: silence this warning, remove the "${ sequence from the start and the }"
-I, [2020-03-20T13:17:48.089671 #10950]  INFO -- kt-suite-aws: sequence from the end of this expression, leaving just the inner expression.
-I, [2020-03-20T13:17:48.089686 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089700 #10950]  INFO -- kt-suite-aws: Template interpolation syntax is still used to construct strings from
-I, [2020-03-20T13:17:48.089719 #10950]  INFO -- kt-suite-aws: expressions when the template includes multiple interpolation sequences or a
-I, [2020-03-20T13:17:48.089735 #10950]  INFO -- kt-suite-aws: mixture of literal strings and interpolations. This deprecation applies only
-I, [2020-03-20T13:17:48.089750 #10950]  INFO -- kt-suite-aws: to templates that consist entirely of a single interpolation sequence.
-I, [2020-03-20T13:17:48.089763 #10950]  INFO -- kt-suite-aws: 
-I, [2020-03-20T13:17:48.089777 #10950]  INFO -- kt-suite-aws: (and 4 more similar warnings elsewhere)
-I, [2020-03-20T13:17:48.089792 #10950]  INFO -- kt-suite-aws: [0m[0m
-I, [2020-03-20T13:17:48.089807 #10950]  INFO -- kt-suite-aws: [0m[1m[32m
-I, [2020-03-20T13:17:48.089825 #10950]  INFO -- kt-suite-aws: Destroy complete! Resources: 3 destroyed.[0m
-W, [2020-03-20T13:17:48.110818 #10950]  WARN -- kt-suite-aws: Finished destroying the Terraform-managed infrastructure.
-W, [2020-03-20T13:17:48.111352 #10950]  WARN -- kt-suite-aws: Selecting the default Terraform workspace...
-I, [2020-03-20T13:17:48.137516 #10950]  INFO -- kt-suite-aws: [0m[32mSwitched to workspace "default".[0m
-W, [2020-03-20T13:17:48.151742 #10950]  WARN -- kt-suite-aws: Finished selecting the default Terraform workspace.
-W, [2020-03-20T13:17:48.152286 #10950]  WARN -- kt-suite-aws: Deleting the kitchen-terraform-kt-suite-aws Terraform workspace...
-I, [2020-03-20T13:17:48.180680 #10950]  INFO -- kt-suite-aws: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-aws"![0m
-W, [2020-03-20T13:17:48.193751 #10950]  WARN -- kt-suite-aws: Finished deleting the kitchen-terraform-kt-suite-aws Terraform workspace.
-I, [2020-03-20T13:17:48.194916 #10950]  INFO -- kt-suite-aws: Finished destroying <kt-suite-aws> (0m6.59s).
+I, [2020-04-11T15:52:51.780235 #6169]  INFO -- kt-suite-aws: -----> Destroying <kt-suite-aws>...
+W, [2020-04-11T15:52:51.780892 #6169]  WARN -- kt-suite-aws: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
+W, [2020-04-11T15:52:51.781183 #6169]  WARN -- kt-suite-aws: Reading the Terraform client version...
+I, [2020-04-11T15:52:51.808043 #6169]  INFO -- kt-suite-aws: Terraform v0.12.24
+I, [2020-04-11T15:52:52.421550 #6169]  INFO -- kt-suite-aws: + provider.aws v2.57.0
+I, [2020-04-11T15:52:52.422361 #6169]  INFO -- kt-suite-aws: + provider.local v1.4.0
+W, [2020-04-11T15:52:52.445436 #6169]  WARN -- kt-suite-aws: Finished reading the Terraform client version.
+W, [2020-04-11T15:52:52.445658 #6169]  WARN -- kt-suite-aws: Finished verifying the Terraform client version.
+W, [2020-04-11T15:52:52.445710 #6169]  WARN -- kt-suite-aws: Initializing the Terraform working directory...
+I, [2020-04-11T15:52:52.471928 #6169]  INFO -- kt-suite-aws: [0m[1mInitializing modules...[0m
+I, [2020-04-11T15:52:52.491915 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:52.492502 #6169]  INFO -- kt-suite-aws: [0m[1mInitializing the backend...[0m
+I, [2020-04-11T15:52:52.498654 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:52.499027 #6169]  INFO -- kt-suite-aws: [0m[1mInitializing provider plugins...[0m
+I, [2020-04-11T15:52:53.115703 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:53.115765 #6169]  INFO -- kt-suite-aws: The following providers do not have any version constraints in configuration,
+I, [2020-04-11T15:52:53.115789 #6169]  INFO -- kt-suite-aws: so the latest version was installed.
+I, [2020-04-11T15:52:53.115810 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:53.115855 #6169]  INFO -- kt-suite-aws: To prevent automatic upgrades to new major versions that may contain breaking
+I, [2020-04-11T15:52:53.115877 #6169]  INFO -- kt-suite-aws: changes, it is recommended to add version = "..." constraints to the
+I, [2020-04-11T15:52:53.115908 #6169]  INFO -- kt-suite-aws: corresponding provider blocks in configuration, with the constraint strings
+I, [2020-04-11T15:52:53.115926 #6169]  INFO -- kt-suite-aws: suggested below.
+I, [2020-04-11T15:52:53.116743 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:53.117192 #6169]  INFO -- kt-suite-aws: * provider.local: version = "~> 1.4"
+I, [2020-04-11T15:52:53.117647 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:52:53.118173 #6169]  INFO -- kt-suite-aws: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+W, [2020-04-11T15:52:53.130732 #6169]  WARN -- kt-suite-aws: Finished initializing the Terraform working directory.
+W, [2020-04-11T15:52:53.131043 #6169]  WARN -- kt-suite-aws: Selecting the kitchen-terraform-kt-suite-aws Terraform workspace...
+W, [2020-04-11T15:52:53.167953 #6169]  WARN -- kt-suite-aws: Finished selecting the kitchen-terraform-kt-suite-aws Terraform workspace.
+W, [2020-04-11T15:52:53.168056 #6169]  WARN -- kt-suite-aws: Destroying the Terraform-managed infrastructure...
+I, [2020-04-11T15:52:55.775454 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
+I, [2020-04-11T15:52:55.777112 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Refreshing state... [id=ec2_trusted_entity_to_s3][0m
+I, [2020-04-11T15:52:55.778999 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_vpc.main: Refreshing state... [id=vpc-02b7d948160bb281e][0m
+I, [2020-04-11T15:52:55.834433 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Refreshing state... [id=s3_access_profile][0m
+I, [2020-04-11T15:52:56.170180 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Refreshing state... [id=test1.txt][0m
+I, [2020-04-11T15:52:56.171769 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Refreshing state... [id=test2.txt][0m
+I, [2020-04-11T15:52:56.172533 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Refreshing state... [id=arn:aws:iam::628536869794:policy/flugel-s3-policy][0m
+I, [2020-04-11T15:52:56.228290 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Refreshing state... [id=ec2_trusted_entity_to_s3-20200411154906430300000001][0m
+I, [2020-04-11T15:52:56.323747 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.private_sg: Refreshing state... [id=sg-0aedc7d75fe558528][0m
+I, [2020-04-11T15:52:56.329487 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Refreshing state... [id=sg-00ba707f1d39b4397][0m
+I, [2020-04-11T15:52:56.333296 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.private: Refreshing state... [id=subnet-0958d7b55055c946f][0m
+I, [2020-04-11T15:52:56.335393 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.public_sg: Refreshing state... [id=sg-0005c083f80f350bc][0m
+I, [2020-04-11T15:52:56.431095 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Refreshing state... [id=igw-0c6b5f27d93ebd0f7][0m
+I, [2020-04-11T15:52:56.441313 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.public: Refreshing state... [id=subnet-05f84264f4436d57b][0m
+I, [2020-04-11T15:52:56.504680 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_eip.natgw: Refreshing state... [id=eipalloc-020d241247d733944][0m
+I, [2020-04-11T15:52:56.507820 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.inet: Refreshing state... [id=rtb-057cf06e6f62a5f22][0m
+I, [2020-04-11T15:52:56.550395 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb.alb: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:loadbalancer/app/flugel-alb-1/d35e8649cff148b4][0m
+I, [2020-04-11T15:52:56.577570 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Refreshing state... [id=rtbassoc-06fdd75782d411725][0m
+I, [2020-04-11T15:52:56.621885 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Refreshing state... [id=nat-0602b49fa2af105c5][0m
+I, [2020-04-11T15:52:56.689201 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.local_file.init: Refreshing state... [id=f4eb686dc3a3762f96f1779f24b94e823678c322][0m
+I, [2020-04-11T15:52:56.694769 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:targetgroup/flugel-alb-1/0feb1ab31bb766a0][0m
+I, [2020-04-11T15:52:56.697252 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener.http: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener/app/flugel-alb-1/d35e8649cff148b4/e80959f3a762dd2b][0m
+I, [2020-04-11T15:52:56.697955 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.nat: Refreshing state... [id=rtb-05f193cba129254a3][0m
+I, [2020-04-11T15:52:56.715513 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Refreshing state... [id=lt-0c2e776c6b4015339][0m
+I, [2020-04-11T15:52:56.738805 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Refreshing state... [id=lt-0aae9493a6b009172][0m
+I, [2020-04-11T15:52:56.777155 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener-rule/app/flugel-alb-1/d35e8649cff148b4/e80959f3a762dd2b/3fe9a7d641f0400c][0m
+I, [2020-04-11T15:52:56.781510 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Refreshing state... [id=rtbassoc-0720afee58f43fdab][0m
+I, [2020-04-11T15:52:56.817294 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Refreshing state... [id=tf-asg-20200411154242396300000006][0m
+I, [2020-04-11T15:52:56.844677 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Refreshing state... [id=tf-asg-20200411154242368900000005][0m
+I, [2020-04-11T15:52:58.335322 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destroying... [id=test2.txt][0m[0m
+I, [2020-04-11T15:52:58.335388 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Destroying... [id=rtbassoc-06fdd75782d411725][0m[0m
+I, [2020-04-11T15:52:58.335429 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Destroying... [id=tf-asg-20200411154242396300000006][0m[0m
+I, [2020-04-11T15:52:58.335446 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destroying... [id=test1.txt][0m[0m
+I, [2020-04-11T15:52:58.384127 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.393395 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Destroying... [id=ec2_trusted_entity_to_s3-20200411154906430300000001][0m[0m
+I, [2020-04-11T15:52:58.401573 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.423113 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener-rule/app/flugel-alb-1/d35e8649cff148b4/e80959f3a762dd2b/3fe9a7d641f0400c][0m[0m
+I, [2020-04-11T15:52:58.438486 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.447054 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Destroying... [id=rtbassoc-0720afee58f43fdab][0m[0m
+I, [2020-04-11T15:52:58.452958 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.466874 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.468995 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Destroying... [id=tf-asg-20200411154242368900000005][0m[0m
+I, [2020-04-11T15:52:58.476514 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.inet: Destroying... [id=rtb-057cf06e6f62a5f22][0m[0m
+I, [2020-04-11T15:52:58.512164 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Destruction complete after 1s[0m[0m
+I, [2020-04-11T15:52:58.518460 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Destroying... [id=arn:aws:iam::628536869794:policy/flugel-s3-policy][0m[0m
+I, [2020-04-11T15:52:58.590205 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.606662 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener/app/flugel-alb-1/d35e8649cff148b4/e80959f3a762dd2b][0m[0m
+I, [2020-04-11T15:52:58.644442 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_listener.http: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.653829 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.nat: Destroying... [id=rtb-05f193cba129254a3][0m[0m
+I, [2020-04-11T15:52:58.688157 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.inet: Destruction complete after 1s[0m[0m
+I, [2020-04-11T15:52:58.700107 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
+I, [2020-04-11T15:52:58.848151 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.868867 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_route_table.nat: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:52:58.875895 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Destroying... [id=nat-0602b49fa2af105c5][0m[0m
+I, [2020-04-11T15:53:08.334633 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 10s elapsed][0m[0m
+I, [2020-04-11T15:53:08.470327 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 10s elapsed][0m[0m
+I, [2020-04-11T15:53:08.877288 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-0602b49fa2af105c5, 10s elapsed][0m[0m
+I, [2020-04-11T15:53:18.334868 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 20s elapsed][0m[0m
+I, [2020-04-11T15:53:18.470739 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 20s elapsed][0m[0m
+I, [2020-04-11T15:53:18.877567 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-0602b49fa2af105c5, 20s elapsed][0m[0m
+I, [2020-04-11T15:53:28.335120 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 30s elapsed][0m[0m
+I, [2020-04-11T15:53:28.470819 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 30s elapsed][0m[0m
+I, [2020-04-11T15:53:28.877801 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-0602b49fa2af105c5, 30s elapsed][0m[0m
+I, [2020-04-11T15:53:38.335381 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 40s elapsed][0m[0m
+I, [2020-04-11T15:53:38.471075 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 40s elapsed][0m[0m
+I, [2020-04-11T15:53:38.878012 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-0602b49fa2af105c5, 40s elapsed][0m[0m
+I, [2020-04-11T15:53:48.335594 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 50s elapsed][0m[0m
+I, [2020-04-11T15:53:48.471289 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 50s elapsed][0m[0m
+I, [2020-04-11T15:53:48.878153 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-0602b49fa2af105c5, 50s elapsed][0m[0m
+I, [2020-04-11T15:53:49.376091 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Destruction complete after 50s[0m[0m
+I, [2020-04-11T15:53:49.380687 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_eip.natgw: Destroying... [id=eipalloc-020d241247d733944][0m[0m
+I, [2020-04-11T15:53:49.742883 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_eip.natgw: Destruction complete after 1s[0m[0m
+I, [2020-04-11T15:53:49.750767 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Destroying... [id=igw-0c6b5f27d93ebd0f7][0m[0m
+I, [2020-04-11T15:53:58.335854 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 1m0s elapsed][0m[0m
+I, [2020-04-11T15:53:58.471519 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 1m0s elapsed][0m[0m
+I, [2020-04-11T15:53:59.752711 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 10s elapsed][0m[0m
+I, [2020-04-11T15:54:08.336078 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 1m10s elapsed][0m[0m
+I, [2020-04-11T15:54:08.471736 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200411154242368900000005, 1m10s elapsed][0m[0m
+I, [2020-04-11T15:54:09.752318 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 20s elapsed][0m[0m
+I, [2020-04-11T15:54:11.396192 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Destruction complete after 1m13s[0m[0m
+I, [2020-04-11T15:54:11.403464 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Destroying... [id=lt-0aae9493a6b009172][0m[0m
+I, [2020-04-11T15:54:11.513677 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Destruction complete after 1s[0m[0m
+I, [2020-04-11T15:54:11.522343 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.public_sg: Destroying... [id=sg-0005c083f80f350bc][0m[0m
+I, [2020-04-11T15:54:11.828202 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.public_sg: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:18.336318 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 1m20s elapsed][0m[0m
+I, [2020-04-11T15:54:19.752516 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 30s elapsed][0m[0m
+I, [2020-04-11T15:54:28.336531 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 1m30s elapsed][0m[0m
+I, [2020-04-11T15:54:29.752757 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 40s elapsed][0m[0m
+I, [2020-04-11T15:54:38.336754 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200411154242396300000006, 1m40s elapsed][0m[0m
+I, [2020-04-11T15:54:39.753045 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 50s elapsed][0m[0m
+I, [2020-04-11T15:54:41.541296 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Destruction complete after 1m44s[0m[0m
+I, [2020-04-11T15:54:41.552372 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Destroying... [id=lt-0c2e776c6b4015339][0m[0m
+I, [2020-04-11T15:54:41.562183 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:targetgroup/flugel-alb-1/0feb1ab31bb766a0][0m[0m
+I, [2020-04-11T15:54:41.599962 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:41.668012 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:41.673550 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.local_file.init: Destroying... [id=f4eb686dc3a3762f96f1779f24b94e823678c322][0m[0m
+I, [2020-04-11T15:54:41.675786 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Destroying... [id=s3_access_profile][0m[0m
+I, [2020-04-11T15:54:41.676633 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.private_sg: Destroying... [id=sg-0aedc7d75fe558528][0m[0m
+I, [2020-04-11T15:54:41.679616 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.local_file.init: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:41.694143 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb.alb: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:loadbalancer/app/flugel-alb-1/d35e8649cff148b4][0m[0m
+I, [2020-04-11T15:54:41.740088 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:41.745607 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Destroying... [id=ec2_trusted_entity_to_s3][0m[0m
+I, [2020-04-11T15:54:41.830263 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:42.000158 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.private_sg: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:42.325814 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_lb.alb: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:54:42.334663 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.public: Destroying... [id=subnet-05f84264f4436d57b][0m[0m
+I, [2020-04-11T15:54:42.336772 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.private: Destroying... [id=subnet-0958d7b55055c946f][0m[0m
+I, [2020-04-11T15:54:42.340613 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Destroying... [id=sg-00ba707f1d39b4397][0m[0m
+I, [2020-04-11T15:54:49.753297 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 1m0s elapsed][0m[0m
+I, [2020-04-11T15:54:52.337732 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-05f84264f4436d57b, 10s elapsed][0m[0m
+I, [2020-04-11T15:54:52.341599 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0958d7b55055c946f, 10s elapsed][0m[0m
+I, [2020-04-11T15:54:52.342177 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-00ba707f1d39b4397, 10s elapsed][0m[0m
+I, [2020-04-11T15:54:59.753560 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0c6b5f27d93ebd0f7, 1m10s elapsed][0m[0m
+I, [2020-04-11T15:55:02.337981 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-05f84264f4436d57b, 20s elapsed][0m[0m
+I, [2020-04-11T15:55:02.341788 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0958d7b55055c946f, 20s elapsed][0m[0m
+I, [2020-04-11T15:55:02.342390 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-00ba707f1d39b4397, 20s elapsed][0m[0m
+I, [2020-04-11T15:55:04.521201 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Destruction complete after 1m15s[0m[0m
+I, [2020-04-11T15:55:08.296168 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.public: Destruction complete after 26s[0m[0m
+I, [2020-04-11T15:55:08.300838 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_subnet.private: Destruction complete after 26s[0m[0m
+I, [2020-04-11T15:55:09.504681 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Destruction complete after 28s[0m[0m
+I, [2020-04-11T15:55:09.510053 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_vpc.main: Destroying... [id=vpc-02b7d948160bb281e][0m[0m
+I, [2020-04-11T15:55:09.685548 #6169]  INFO -- kt-suite-aws: [0m[1mmodule.kt_test.aws_vpc.main: Destruction complete after 0s[0m[0m
+I, [2020-04-11T15:55:09.701219 #6169]  INFO -- kt-suite-aws: [33m
+I, [2020-04-11T15:55:09.701273 #6169]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+I, [2020-04-11T15:55:09.701294 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:55:09.701324 #6169]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 3, in provider "aws":
+I, [2020-04-11T15:55:09.701349 #6169]  INFO -- kt-suite-aws:    3:   region  = [4m"${var.region}"[0m
+I, [2020-04-11T15:55:09.701374 #6169]  INFO -- kt-suite-aws: [0m
+I, [2020-04-11T15:55:09.701402 #6169]  INFO -- kt-suite-aws: Terraform 0.11 and earlier required all non-constant expressions to be
+I, [2020-04-11T15:55:09.701417 #6169]  INFO -- kt-suite-aws: provided via interpolation syntax, but this pattern is now deprecated. To
+I, [2020-04-11T15:55:09.701438 #6169]  INFO -- kt-suite-aws: silence this warning, remove the "${ sequence from the start and the }"
+I, [2020-04-11T15:55:09.701454 #6169]  INFO -- kt-suite-aws: sequence from the end of this expression, leaving just the inner expression.
+I, [2020-04-11T15:55:09.701468 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:55:09.701482 #6169]  INFO -- kt-suite-aws: Template interpolation syntax is still used to construct strings from
+I, [2020-04-11T15:55:09.701495 #6169]  INFO -- kt-suite-aws: expressions when the template includes multiple interpolation sequences or a
+I, [2020-04-11T15:55:09.701514 #6169]  INFO -- kt-suite-aws: mixture of literal strings and interpolations. This deprecation applies only
+I, [2020-04-11T15:55:09.701529 #6169]  INFO -- kt-suite-aws: to templates that consist entirely of a single interpolation sequence.
+I, [2020-04-11T15:55:09.701546 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:55:09.701561 #6169]  INFO -- kt-suite-aws: (and 37 more similar warnings elsewhere)
+I, [2020-04-11T15:55:09.703629 #6169]  INFO -- kt-suite-aws: [0m[0m
+I, [2020-04-11T15:55:09.713800 #6169]  INFO -- kt-suite-aws: [33m
+I, [2020-04-11T15:55:09.713838 #6169]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1m"condition.0.values": [DEPRECATED] use 'host_header' or 'path_pattern' attribute instead[0m
+I, [2020-04-11T15:55:09.713859 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:55:09.713875 #6169]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 338, in resource "aws_lb_listener_rule" "asg":
+I, [2020-04-11T15:55:09.713900 #6169]  INFO -- kt-suite-aws:  338: resource "aws_lb_listener_rule" "asg" [4m{[0m
+I, [2020-04-11T15:55:09.713931 #6169]  INFO -- kt-suite-aws: [0m
+I, [2020-04-11T15:55:09.714497 #6169]  INFO -- kt-suite-aws: [0m[0m
+I, [2020-04-11T15:55:09.722664 #6169]  INFO -- kt-suite-aws: [33m
+I, [2020-04-11T15:55:09.722701 #6169]  INFO -- kt-suite-aws: [1m[33mWarning: [0m[0m[1m"condition.0.field": [DEPRECATED] use 'host_header' or 'path_pattern' attribute instead[0m
+I, [2020-04-11T15:55:09.722723 #6169]  INFO -- kt-suite-aws: 
+I, [2020-04-11T15:55:09.722740 #6169]  INFO -- kt-suite-aws: [0m  on ../../../main.tf line 338, in resource "aws_lb_listener_rule" "asg":
+I, [2020-04-11T15:55:09.722778 #6169]  INFO -- kt-suite-aws:  338: resource "aws_lb_listener_rule" "asg" [4m{[0m
+I, [2020-04-11T15:55:09.722796 #6169]  INFO -- kt-suite-aws: [0m
+I, [2020-04-11T15:55:09.723300 #6169]  INFO -- kt-suite-aws: [0m[0m
+I, [2020-04-11T15:55:09.723751 #6169]  INFO -- kt-suite-aws: [0m[1m[32m
+I, [2020-04-11T15:55:09.724148 #6169]  INFO -- kt-suite-aws: Destroy complete! Resources: 29 destroyed.[0m
+W, [2020-04-11T15:55:09.742326 #6169]  WARN -- kt-suite-aws: Finished destroying the Terraform-managed infrastructure.
+W, [2020-04-11T15:55:09.742411 #6169]  WARN -- kt-suite-aws: Selecting the default Terraform workspace...
+I, [2020-04-11T15:55:09.769713 #6169]  INFO -- kt-suite-aws: [0m[32mSwitched to workspace "default".[0m
+W, [2020-04-11T15:55:09.792102 #6169]  WARN -- kt-suite-aws: Finished selecting the default Terraform workspace.
+W, [2020-04-11T15:55:09.792190 #6169]  WARN -- kt-suite-aws: Deleting the kitchen-terraform-kt-suite-aws Terraform workspace...
+I, [2020-04-11T15:55:09.821941 #6169]  INFO -- kt-suite-aws: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-aws"![0m
+W, [2020-04-11T15:55:09.844518 #6169]  WARN -- kt-suite-aws: Finished deleting the kitchen-terraform-kt-suite-aws Terraform workspace.
+I, [2020-04-11T15:55:09.845287 #6169]  INFO -- kt-suite-aws: Finished destroying <kt-suite-aws> (2m18.06s).
