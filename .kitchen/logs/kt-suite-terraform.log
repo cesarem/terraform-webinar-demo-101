@@ -1,52 +1,216 @@
-I, [2020-03-17T16:44:35.331695 #15873]  INFO -- kt-suite-terraform: -----> Destroying <kt-suite-terraform>...
-W, [2020-03-17T16:44:35.332602 #15873]  WARN -- kt-suite-terraform: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
-W, [2020-03-17T16:44:35.333102 #15873]  WARN -- kt-suite-terraform: Reading the Terraform client version...
-I, [2020-03-17T16:44:35.360225 #15873]  INFO -- kt-suite-terraform: Terraform v0.12.23
-I, [2020-03-17T16:44:35.980256 #15873]  INFO -- kt-suite-terraform: + provider.aws v2.53.0
-I, [2020-03-17T16:44:35.981201 #15873]  INFO -- kt-suite-terraform: + provider.local v1.4.0
-W, [2020-03-17T16:44:35.993811 #15873]  WARN -- kt-suite-terraform: Finished reading the Terraform client version.
-W, [2020-03-17T16:44:35.994416 #15873]  WARN -- kt-suite-terraform: Finished verifying the Terraform client version.
-W, [2020-03-17T16:44:35.994880 #15873]  WARN -- kt-suite-terraform: Initializing the Terraform working directory...
-I, [2020-03-17T16:44:36.019795 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing modules...[0m
-I, [2020-03-17T16:44:36.023957 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.024552 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing the backend...[0m
-I, [2020-03-17T16:44:36.028208 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.030908 #15873]  INFO -- kt-suite-terraform: [0m[1mInitializing provider plugins...[0m
-I, [2020-03-17T16:44:36.660797 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.660869 #15873]  INFO -- kt-suite-terraform: The following providers do not have any version constraints in configuration,
-I, [2020-03-17T16:44:36.660894 #15873]  INFO -- kt-suite-terraform: so the latest version was installed.
-I, [2020-03-17T16:44:36.660914 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.660933 #15873]  INFO -- kt-suite-terraform: To prevent automatic upgrades to new major versions that may contain breaking
-I, [2020-03-17T16:44:36.662566 #15873]  INFO -- kt-suite-terraform: changes, it is recommended to add version = "..." constraints to the
-I, [2020-03-17T16:44:36.662605 #15873]  INFO -- kt-suite-terraform: corresponding provider blocks in configuration, with the constraint strings
-I, [2020-03-17T16:44:36.662631 #15873]  INFO -- kt-suite-terraform: suggested below.
-I, [2020-03-17T16:44:36.663588 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.664282 #15873]  INFO -- kt-suite-terraform: * provider.local: version = "~> 1.4"
-I, [2020-03-17T16:44:36.664728 #15873]  INFO -- kt-suite-terraform: 
-I, [2020-03-17T16:44:36.665268 #15873]  INFO -- kt-suite-terraform: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
-W, [2020-03-17T16:44:36.677943 #15873]  WARN -- kt-suite-terraform: Finished initializing the Terraform working directory.
-W, [2020-03-17T16:44:36.678374 #15873]  WARN -- kt-suite-terraform: Selecting the kitchen-terraform-kt-suite-terraform Terraform workspace...
-I, [2020-03-17T16:44:36.703992 #15873]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "kitchen-terraform-kt-suite-terraform".[0m
-W, [2020-03-17T16:44:36.718057 #15873]  WARN -- kt-suite-terraform: Finished selecting the kitchen-terraform-kt-suite-terraform Terraform workspace.
-W, [2020-03-17T16:44:36.718554 #15873]  WARN -- kt-suite-terraform: Destroying the Terraform-managed infrastructure...
-I, [2020-03-17T16:44:38.781942 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.test_files[0]: Refreshing state... [id=3e147058d8555fb8368be3dbe757557932652800][0m
-I, [2020-03-17T16:44:38.785058 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.test_files[1]: Refreshing state... [id=3e147058d8555fb8368be3dbe757557932652800][0m
-I, [2020-03-17T16:44:39.123943 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
-I, [2020-03-17T16:44:39.716827 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Refreshing state... [id=test1.txt][0m
-I, [2020-03-17T16:44:39.718624 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Refreshing state... [id=test2.txt][0m
-I, [2020-03-17T16:44:40.726052 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Destroying... [id=test2.txt][0m[0m
-I, [2020-03-17T16:44:40.726132 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Destroying... [id=test1.txt][0m[0m
-I, [2020-03-17T16:44:40.768264 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[1]: Destruction complete after 0s[0m[0m
-I, [2020-03-17T16:44:40.772483 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.file_object[0]: Destruction complete after 0s[0m[0m
-I, [2020-03-17T16:44:40.786352 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
-I, [2020-03-17T16:44:40.933942 #15873]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
-I, [2020-03-17T16:44:40.948255 #15873]  INFO -- kt-suite-terraform: [0m[1m[32m
-I, [2020-03-17T16:44:40.948300 #15873]  INFO -- kt-suite-terraform: Destroy complete! Resources: 3 destroyed.[0m
-W, [2020-03-17T16:44:40.963597 #15873]  WARN -- kt-suite-terraform: Finished destroying the Terraform-managed infrastructure.
-W, [2020-03-17T16:44:40.963976 #15873]  WARN -- kt-suite-terraform: Selecting the default Terraform workspace...
-I, [2020-03-17T16:44:40.989742 #15873]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "default".[0m
-W, [2020-03-17T16:44:41.002254 #15873]  WARN -- kt-suite-terraform: Finished selecting the default Terraform workspace.
-W, [2020-03-17T16:44:41.002744 #15873]  WARN -- kt-suite-terraform: Deleting the kitchen-terraform-kt-suite-terraform Terraform workspace...
-I, [2020-03-17T16:44:41.030169 #15873]  INFO -- kt-suite-terraform: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-terraform"![0m
-W, [2020-03-17T16:44:41.044077 #15873]  WARN -- kt-suite-terraform: Finished deleting the kitchen-terraform-kt-suite-terraform Terraform workspace.
-I, [2020-03-17T16:44:41.045273 #15873]  INFO -- kt-suite-terraform: Finished destroying <kt-suite-terraform> (0m5.71s).
+I, [2020-04-16T05:10:37.704457 #22550]  INFO -- kt-suite-terraform: -----> Destroying <kt-suite-terraform>...
+W, [2020-04-16T05:10:37.705174 #22550]  WARN -- kt-suite-terraform: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
+W, [2020-04-16T05:10:37.705483 #22550]  WARN -- kt-suite-terraform: Reading the Terraform client version...
+I, [2020-04-16T05:10:37.730892 #22550]  INFO -- kt-suite-terraform: Terraform v0.12.24
+I, [2020-04-16T05:10:38.347821 #22550]  INFO -- kt-suite-terraform: + provider.aws v2.57.0
+I, [2020-04-16T05:10:38.350942 #22550]  INFO -- kt-suite-terraform: + provider.local v1.4.0
+W, [2020-04-16T05:10:38.373391 #22550]  WARN -- kt-suite-terraform: Finished reading the Terraform client version.
+W, [2020-04-16T05:10:38.373595 #22550]  WARN -- kt-suite-terraform: Finished verifying the Terraform client version.
+W, [2020-04-16T05:10:38.373648 #22550]  WARN -- kt-suite-terraform: Initializing the Terraform working directory...
+I, [2020-04-16T05:10:38.397736 #22550]  INFO -- kt-suite-terraform: [0m[1mInitializing modules...[0m
+I, [2020-04-16T05:10:38.417240 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:38.420127 #22550]  INFO -- kt-suite-terraform: [0m[1mInitializing the backend...[0m
+I, [2020-04-16T05:10:38.422177 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:38.422579 #22550]  INFO -- kt-suite-terraform: [0m[1mInitializing provider plugins...[0m
+I, [2020-04-16T05:10:39.046385 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:39.046450 #22550]  INFO -- kt-suite-terraform: The following providers do not have any version constraints in configuration,
+I, [2020-04-16T05:10:39.046485 #22550]  INFO -- kt-suite-terraform: so the latest version was installed.
+I, [2020-04-16T05:10:39.046502 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:39.046516 #22550]  INFO -- kt-suite-terraform: To prevent automatic upgrades to new major versions that may contain breaking
+I, [2020-04-16T05:10:39.046531 #22550]  INFO -- kt-suite-terraform: changes, it is recommended to add version = "..." constraints to the
+I, [2020-04-16T05:10:39.046544 #22550]  INFO -- kt-suite-terraform: corresponding provider blocks in configuration, with the constraint strings
+I, [2020-04-16T05:10:39.046559 #22550]  INFO -- kt-suite-terraform: suggested below.
+I, [2020-04-16T05:10:39.047366 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:39.047827 #22550]  INFO -- kt-suite-terraform: * provider.local: version = "~> 1.4"
+I, [2020-04-16T05:10:39.048219 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:10:39.048742 #22550]  INFO -- kt-suite-terraform: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+W, [2020-04-16T05:10:39.061301 #22550]  WARN -- kt-suite-terraform: Finished initializing the Terraform working directory.
+W, [2020-04-16T05:10:39.061620 #22550]  WARN -- kt-suite-terraform: Selecting the kitchen-terraform-kt-suite-terraform Terraform workspace...
+I, [2020-04-16T05:10:39.089424 #22550]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "kitchen-terraform-kt-suite-terraform".[0m
+W, [2020-04-16T05:10:39.112016 #22550]  WARN -- kt-suite-terraform: Finished selecting the kitchen-terraform-kt-suite-terraform Terraform workspace.
+W, [2020-04-16T05:10:39.112137 #22550]  WARN -- kt-suite-terraform: Destroying the Terraform-managed infrastructure...
+I, [2020-04-16T05:10:41.786778 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_vpc.main: Refreshing state... [id=vpc-0da8cea873a963db8][0m
+I, [2020-04-16T05:10:41.786852 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Refreshing state... [id=flugel-test1-bucket][0m
+I, [2020-04-16T05:10:41.790833 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.data.aws_iam_policy_document.s3_access_policy: Refreshing state...[0m
+I, [2020-04-16T05:10:41.791553 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.data.aws_iam_policy_document.ec2_assume_role: Refreshing state...[0m
+I, [2020-04-16T05:10:41.799934 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Refreshing state... [id=arn:aws:iam::628536869794:policy/flugel-s3-policy][0m
+I, [2020-04-16T05:10:41.800734 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Refreshing state... [id=ec2_trusted_entity_to_s3][0m
+I, [2020-04-16T05:10:41.848536 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Refreshing state... [id=s3_access_profile][0m
+I, [2020-04-16T05:10:41.854295 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Refreshing state... [id=ec2_trusted_entity_to_s3-20200416035850567000000001][0m
+I, [2020-04-16T05:10:42.386259 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Refreshing state... [id=sg-0cc4daf293b1aaba4][0m
+I, [2020-04-16T05:10:42.389072 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.private_sg: Refreshing state... [id=sg-0dbd89e0f7a91f52b][0m
+I, [2020-04-16T05:10:42.391059 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.public_sg: Refreshing state... [id=sg-05fa6331be8db71bb][0m
+I, [2020-04-16T05:10:42.490167 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Refreshing state... [id=igw-0427825a24daa83a4][0m
+I, [2020-04-16T05:10:42.498858 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Refreshing state... [id=subnet-0fcc0d87f0df3c025][0m
+I, [2020-04-16T05:10:42.522877 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Refreshing state... [id=subnet-0f4cc61d2bd3dece3][0m
+I, [2020-04-16T05:10:42.579219 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.inet: Refreshing state... [id=rtb-08b035bb4dc71cc1b][0m
+I, [2020-04-16T05:10:42.600764 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_eip.natgw: Refreshing state... [id=eipalloc-0929bb5cc975ffe3f][0m
+I, [2020-04-16T05:10:42.609522 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb.alb: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:loadbalancer/app/flugel-alb-1/8b95a7ce3a503aec][0m
+I, [2020-04-16T05:10:42.649295 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Refreshing state... [id=rtbassoc-0939b8690ad52e286][0m
+I, [2020-04-16T05:10:42.709593 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Refreshing state... [id=nat-046bfd55cf76698fa][0m
+I, [2020-04-16T05:10:42.745014 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.init: Refreshing state... [id=9ac7289bafcf7ff95397cd6b8c9aa6aef969fc06][0m
+I, [2020-04-16T05:10:42.749239 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:targetgroup/flugel-alb-1/4809da29ff952cea][0m
+I, [2020-04-16T05:10:42.751167 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener.http: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener/app/flugel-alb-1/8b95a7ce3a503aec/662fb8f7b5649458][0m
+I, [2020-04-16T05:10:42.778701 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.nat: Refreshing state... [id=rtb-018ea8cfad2ef2bb8][0m
+I, [2020-04-16T05:10:42.784754 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Refreshing state... [id=lt-0080dd41d54cd6148][0m
+I, [2020-04-16T05:10:42.833106 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Refreshing state... [id=lt-07e428babba032c44][0m
+I, [2020-04-16T05:10:42.867501 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener-rule/app/flugel-alb-1/8b95a7ce3a503aec/662fb8f7b5649458/fa4f99be5425c6b6][0m
+I, [2020-04-16T05:10:42.882634 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Refreshing state... [id=rtbassoc-0fc763aa39bf3b3ed][0m
+I, [2020-04-16T05:10:42.898704 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Refreshing state... [id=tf-asg-20200416040215481800000006][0m
+I, [2020-04-16T05:10:42.946463 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Refreshing state... [id=tf-asg-20200416040215489700000007][0m
+I, [2020-04-16T05:10:43.100595 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Refreshing state... [id=test1.txt][0m
+I, [2020-04-16T05:10:43.103082 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Refreshing state... [id=test2.txt][0m
+I, [2020-04-16T05:10:44.623277 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destroying... [id=test2.txt][0m[0m
+I, [2020-04-16T05:10:44.623358 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener-rule/app/flugel-alb-1/8b95a7ce3a503aec/662fb8f7b5649458/fa4f99be5425c6b6][0m[0m
+I, [2020-04-16T05:10:44.625417 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Destroying... [id=tf-asg-20200416040215489700000007][0m[0m
+I, [2020-04-16T05:10:44.631476 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Destroying... [id=ec2_trusted_entity_to_s3-20200416035850567000000001][0m[0m
+I, [2020-04-16T05:10:44.655305 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener_rule.asg: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.673522 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_2: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.686492 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destroying... [id=test1.txt][0m[0m
+I, [2020-04-16T05:10:44.692912 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Destroying... [id=tf-asg-20200416040215481800000006][0m[0m
+I, [2020-04-16T05:10:44.696338 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role_policy_attachment.s3_read_only_policy: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.705977 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Destroying... [id=rtbassoc-0fc763aa39bf3b3ed][0m[0m
+I, [2020-04-16T05:10:44.720633 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket_object.object_1: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.729433 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Destroying... [id=rtbassoc-0939b8690ad52e286][0m[0m
+I, [2020-04-16T05:10:44.781306 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.nat_assoc: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.794357 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:listener/app/flugel-alb-1/8b95a7ce3a503aec/662fb8f7b5649458][0m[0m
+I, [2020-04-16T05:10:44.801476 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table_association.pub_assoc: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.812078 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Destroying... [id=arn:aws:iam::628536869794:policy/flugel-s3-policy][0m[0m
+I, [2020-04-16T05:10:44.816840 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_listener.http: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.827639 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destroying... [id=flugel-test1-bucket][0m[0m
+I, [2020-04-16T05:10:44.913180 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_policy.s3_policy: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.922508 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.nat: Destroying... [id=rtb-018ea8cfad2ef2bb8][0m[0m
+I, [2020-04-16T05:10:44.991037 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_s3_bucket.flugel: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:44.997564 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.inet: Destroying... [id=rtb-08b035bb4dc71cc1b][0m[0m
+I, [2020-04-16T05:10:45.166999 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.nat: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:45.196897 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Destroying... [id=nat-046bfd55cf76698fa][0m[0m
+I, [2020-04-16T05:10:45.252484 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_route_table.inet: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:10:54.631652 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 10s elapsed][0m[0m
+I, [2020-04-16T05:10:54.695155 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 10s elapsed][0m[0m
+I, [2020-04-16T05:10:55.198380 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-046bfd55cf76698fa, 10s elapsed][0m[0m
+I, [2020-04-16T05:11:04.631888 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 20s elapsed][0m[0m
+I, [2020-04-16T05:11:04.695357 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 20s elapsed][0m[0m
+I, [2020-04-16T05:11:05.198603 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-046bfd55cf76698fa, 20s elapsed][0m[0m
+I, [2020-04-16T05:11:14.632106 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 30s elapsed][0m[0m
+I, [2020-04-16T05:11:14.695622 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 30s elapsed][0m[0m
+I, [2020-04-16T05:11:15.198881 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-046bfd55cf76698fa, 30s elapsed][0m[0m
+I, [2020-04-16T05:11:24.632406 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 40s elapsed][0m[0m
+I, [2020-04-16T05:11:24.695913 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 40s elapsed][0m[0m
+I, [2020-04-16T05:11:25.199036 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Still destroying... [id=nat-046bfd55cf76698fa, 40s elapsed][0m[0m
+I, [2020-04-16T05:11:25.722091 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_nat_gateway.natgw: Destruction complete after 41s[0m[0m
+I, [2020-04-16T05:11:25.726748 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_eip.natgw: Destroying... [id=eipalloc-0929bb5cc975ffe3f][0m[0m
+I, [2020-04-16T05:11:26.054319 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_eip.natgw: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:11:26.057822 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Destroying... [id=igw-0427825a24daa83a4][0m[0m
+I, [2020-04-16T05:11:34.632668 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 50s elapsed][0m[0m
+I, [2020-04-16T05:11:34.696086 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 50s elapsed][0m[0m
+I, [2020-04-16T05:11:36.059625 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 10s elapsed][0m[0m
+I, [2020-04-16T05:11:44.632930 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 1m0s elapsed][0m[0m
+I, [2020-04-16T05:11:44.696358 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 1m0s elapsed][0m[0m
+I, [2020-04-16T05:11:46.059330 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 20s elapsed][0m[0m
+I, [2020-04-16T05:11:54.633094 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 1m10s elapsed][0m[0m
+I, [2020-04-16T05:11:54.696573 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 1m10s elapsed][0m[0m
+I, [2020-04-16T05:11:56.061954 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 30s elapsed][0m[0m
+I, [2020-04-16T05:12:04.633374 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Still destroying... [id=tf-asg-20200416040215489700000007, 1m20s elapsed][0m[0m
+I, [2020-04-16T05:12:04.696812 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Still destroying... [id=tf-asg-20200416040215481800000006, 1m20s elapsed][0m[0m
+I, [2020-04-16T05:12:06.059802 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 40s elapsed][0m[0m
+I, [2020-04-16T05:12:07.826958 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.public_asg: Destruction complete after 1m23s[0m[0m
+I, [2020-04-16T05:12:07.834010 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Destroying... [id=lt-0080dd41d54cd6148][0m[0m
+I, [2020-04-16T05:12:07.948645 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.public_cluster: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:07.961309 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.public_sg: Destroying... [id=sg-05fa6331be8db71bb][0m[0m
+I, [2020-04-16T05:12:08.306386 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.public_sg: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:09.735696 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_autoscaling_group.private_asg: Destruction complete after 1m25s[0m[0m
+I, [2020-04-16T05:12:09.743893 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Destroying... [id=lt-07e428babba032c44][0m[0m
+I, [2020-04-16T05:12:09.745496 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:targetgroup/flugel-alb-1/4809da29ff952cea][0m[0m
+I, [2020-04-16T05:12:09.790987 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb_target_group.asg: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:09.854974 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_launch_template.private_cluster: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:09.862963 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.init: Destroying... [id=9ac7289bafcf7ff95397cd6b8c9aa6aef969fc06][0m[0m
+I, [2020-04-16T05:12:09.864684 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.local_file.init: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:09.871666 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Destroying... [id=s3_access_profile][0m[0m
+I, [2020-04-16T05:12:09.871714 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.private_sg: Destroying... [id=sg-0dbd89e0f7a91f52b][0m[0m
+I, [2020-04-16T05:12:09.879664 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb.alb: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:628536869794:loadbalancer/app/flugel-alb-1/8b95a7ce3a503aec][0m[0m
+I, [2020-04-16T05:12:09.938597 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_instance_profile.s3_access: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:09.947424 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Destroying... [id=ec2_trusted_entity_to_s3][0m[0m
+I, [2020-04-16T05:12:10.041928 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_iam_role.ec2_trusted_entity_to_s3: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:10.229818 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.private_sg: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:10.482469 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_lb.alb: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:12:10.488395 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Destroying... [id=subnet-0fcc0d87f0df3c025][0m[0m
+I, [2020-04-16T05:12:10.490138 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Destroying... [id=sg-0cc4daf293b1aaba4][0m[0m
+I, [2020-04-16T05:12:10.492334 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Destroying... [id=subnet-0f4cc61d2bd3dece3][0m[0m
+I, [2020-04-16T05:12:16.060087 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 50s elapsed][0m[0m
+I, [2020-04-16T05:12:20.489508 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0fcc0d87f0df3c025, 10s elapsed][0m[0m
+I, [2020-04-16T05:12:20.492529 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-0cc4daf293b1aaba4, 10s elapsed][0m[0m
+I, [2020-04-16T05:12:20.493550 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-0f4cc61d2bd3dece3, 10s elapsed][0m[0m
+I, [2020-04-16T05:12:26.060266 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 1m0s elapsed][0m[0m
+I, [2020-04-16T05:12:30.489801 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0fcc0d87f0df3c025, 20s elapsed][0m[0m
+I, [2020-04-16T05:12:30.492711 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-0cc4daf293b1aaba4, 20s elapsed][0m[0m
+I, [2020-04-16T05:12:30.493737 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-0f4cc61d2bd3dece3, 20s elapsed][0m[0m
+I, [2020-04-16T05:12:36.060522 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 1m10s elapsed][0m[0m
+I, [2020-04-16T05:12:40.490039 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0fcc0d87f0df3c025, 30s elapsed][0m[0m
+I, [2020-04-16T05:12:40.492919 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-0cc4daf293b1aaba4, 30s elapsed][0m[0m
+I, [2020-04-16T05:12:40.493899 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-0f4cc61d2bd3dece3, 30s elapsed][0m[0m
+I, [2020-04-16T05:12:46.060773 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Still destroying... [id=igw-0427825a24daa83a4, 1m20s elapsed][0m[0m
+I, [2020-04-16T05:12:50.490446 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Still destroying... [id=subnet-0fcc0d87f0df3c025, 40s elapsed][0m[0m
+I, [2020-04-16T05:12:50.493124 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Still destroying... [id=sg-0cc4daf293b1aaba4, 40s elapsed][0m[0m
+I, [2020-04-16T05:12:50.494071 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-0f4cc61d2bd3dece3, 40s elapsed][0m[0m
+I, [2020-04-16T05:12:51.149638 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_internet_gateway.gw: Destruction complete after 1m25s[0m[0m
+I, [2020-04-16T05:12:56.687036 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.private: Destruction complete after 47s[0m[0m
+I, [2020-04-16T05:12:58.077067 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_security_group.alb_sg: Destruction complete after 48s[0m[0m
+I, [2020-04-16T05:13:00.494336 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Still destroying... [id=subnet-0f4cc61d2bd3dece3, 50s elapsed][0m[0m
+I, [2020-04-16T05:13:06.807998 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_subnet.public: Destruction complete after 57s[0m[0m
+I, [2020-04-16T05:13:06.813556 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_vpc.main: Destroying... [id=vpc-0da8cea873a963db8][0m[0m
+I, [2020-04-16T05:13:07.001613 #22550]  INFO -- kt-suite-terraform: [0m[1mmodule.kt_test.aws_vpc.main: Destruction complete after 0s[0m[0m
+I, [2020-04-16T05:13:07.024520 #22550]  INFO -- kt-suite-terraform: [33m
+I, [2020-04-16T05:13:07.024582 #22550]  INFO -- kt-suite-terraform: [1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+I, [2020-04-16T05:13:07.024619 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.024648 #22550]  INFO -- kt-suite-terraform: [0m  on ../../../main.tf line 3, in provider "aws":
+I, [2020-04-16T05:13:07.024666 #22550]  INFO -- kt-suite-terraform:    3:   region  = [4m"${var.region}"[0m
+I, [2020-04-16T05:13:07.024692 #22550]  INFO -- kt-suite-terraform: [0m
+I, [2020-04-16T05:13:07.024706 #22550]  INFO -- kt-suite-terraform: Terraform 0.11 and earlier required all non-constant expressions to be
+I, [2020-04-16T05:13:07.024726 #22550]  INFO -- kt-suite-terraform: provided via interpolation syntax, but this pattern is now deprecated. To
+I, [2020-04-16T05:13:07.024740 #22550]  INFO -- kt-suite-terraform: silence this warning, remove the "${ sequence from the start and the }"
+I, [2020-04-16T05:13:07.024754 #22550]  INFO -- kt-suite-terraform: sequence from the end of this expression, leaving just the inner expression.
+I, [2020-04-16T05:13:07.024767 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.024785 #22550]  INFO -- kt-suite-terraform: Template interpolation syntax is still used to construct strings from
+I, [2020-04-16T05:13:07.024800 #22550]  INFO -- kt-suite-terraform: expressions when the template includes multiple interpolation sequences or a
+I, [2020-04-16T05:13:07.024813 #22550]  INFO -- kt-suite-terraform: mixture of literal strings and interpolations. This deprecation applies only
+I, [2020-04-16T05:13:07.024827 #22550]  INFO -- kt-suite-terraform: to templates that consist entirely of a single interpolation sequence.
+I, [2020-04-16T05:13:07.024840 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.024862 #22550]  INFO -- kt-suite-terraform: (and 51 more similar warnings elsewhere)
+I, [2020-04-16T05:13:07.026219 #22550]  INFO -- kt-suite-terraform: [0m[0m
+I, [2020-04-16T05:13:07.035856 #22550]  INFO -- kt-suite-terraform: [33m
+I, [2020-04-16T05:13:07.035895 #22550]  INFO -- kt-suite-terraform: [1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+I, [2020-04-16T05:13:07.035914 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.035929 #22550]  INFO -- kt-suite-terraform: [0m  on ../../../main.tf line 96, in resource "aws_launch_template" "public_cluster":
+I, [2020-04-16T05:13:07.035943 #22550]  INFO -- kt-suite-terraform:   96:   depends_on    = [[4m"data.local_file.init"[0m]
+I, [2020-04-16T05:13:07.035976 #22550]  INFO -- kt-suite-terraform: [0m
+I, [2020-04-16T05:13:07.035993 #22550]  INFO -- kt-suite-terraform: In this context, references are expected literally rather than in quotes.
+I, [2020-04-16T05:13:07.036007 #22550]  INFO -- kt-suite-terraform: Terraform 0.11 and earlier required quotes, but quoted references are now
+I, [2020-04-16T05:13:07.036020 #22550]  INFO -- kt-suite-terraform: deprecated and will be removed in a future version of Terraform. Remove the
+I, [2020-04-16T05:13:07.036033 #22550]  INFO -- kt-suite-terraform: quotes surrounding this reference to silence this warning.
+I, [2020-04-16T05:13:07.036050 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.036063 #22550]  INFO -- kt-suite-terraform: (and 3 more similar warnings elsewhere)
+I, [2020-04-16T05:13:07.036808 #22550]  INFO -- kt-suite-terraform: [0m[0m
+I, [2020-04-16T05:13:07.045773 #22550]  INFO -- kt-suite-terraform: [33m
+I, [2020-04-16T05:13:07.045809 #22550]  INFO -- kt-suite-terraform: [1m[33mWarning: [0m[0m[1m"condition.0.values": [DEPRECATED] use 'host_header' or 'path_pattern' attribute instead[0m
+I, [2020-04-16T05:13:07.045828 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.045848 #22550]  INFO -- kt-suite-terraform: [0m  on ../../../main.tf line 338, in resource "aws_lb_listener_rule" "asg":
+I, [2020-04-16T05:13:07.045863 #22550]  INFO -- kt-suite-terraform:  338: resource "aws_lb_listener_rule" "asg" [4m{[0m
+I, [2020-04-16T05:13:07.045877 #22550]  INFO -- kt-suite-terraform: [0m
+I, [2020-04-16T05:13:07.046504 #22550]  INFO -- kt-suite-terraform: [0m[0m
+I, [2020-04-16T05:13:07.055573 #22550]  INFO -- kt-suite-terraform: [33m
+I, [2020-04-16T05:13:07.055610 #22550]  INFO -- kt-suite-terraform: [1m[33mWarning: [0m[0m[1m"condition.0.field": [DEPRECATED] use 'host_header' or 'path_pattern' attribute instead[0m
+I, [2020-04-16T05:13:07.055635 #22550]  INFO -- kt-suite-terraform: 
+I, [2020-04-16T05:13:07.055651 #22550]  INFO -- kt-suite-terraform: [0m  on ../../../main.tf line 338, in resource "aws_lb_listener_rule" "asg":
+I, [2020-04-16T05:13:07.055664 #22550]  INFO -- kt-suite-terraform:  338: resource "aws_lb_listener_rule" "asg" [4m{[0m
+I, [2020-04-16T05:13:07.055691 #22550]  INFO -- kt-suite-terraform: [0m
+I, [2020-04-16T05:13:07.056228 #22550]  INFO -- kt-suite-terraform: [0m[0m
+I, [2020-04-16T05:13:07.056690 #22550]  INFO -- kt-suite-terraform: [0m[1m[32m
+I, [2020-04-16T05:13:07.057084 #22550]  INFO -- kt-suite-terraform: Destroy complete! Resources: 29 destroyed.[0m
+W, [2020-04-16T05:13:07.075820 #22550]  WARN -- kt-suite-terraform: Finished destroying the Terraform-managed infrastructure.
+W, [2020-04-16T05:13:07.075897 #22550]  WARN -- kt-suite-terraform: Selecting the default Terraform workspace...
+I, [2020-04-16T05:13:07.105646 #22550]  INFO -- kt-suite-terraform: [0m[32mSwitched to workspace "default".[0m
+W, [2020-04-16T05:13:07.118463 #22550]  WARN -- kt-suite-terraform: Finished selecting the default Terraform workspace.
+W, [2020-04-16T05:13:07.118540 #22550]  WARN -- kt-suite-terraform: Deleting the kitchen-terraform-kt-suite-terraform Terraform workspace...
+I, [2020-04-16T05:13:07.148968 #22550]  INFO -- kt-suite-terraform: [0m[32mDeleted workspace "kitchen-terraform-kt-suite-terraform"![0m
+W, [2020-04-16T05:13:07.171649 #22550]  WARN -- kt-suite-terraform: Finished deleting the kitchen-terraform-kt-suite-terraform Terraform workspace.
+I, [2020-04-16T05:13:07.172975 #22550]  INFO -- kt-suite-terraform: Finished destroying <kt-suite-terraform> (2m29.47s).

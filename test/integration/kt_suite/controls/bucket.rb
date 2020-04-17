@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+#require 'kitchen-terraform'
+#require 'kitchen-verifier-awspec'
 require 'awspec'
 require 'rhcl'
 

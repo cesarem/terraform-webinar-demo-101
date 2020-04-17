@@ -93,7 +93,7 @@ resource "aws_launch_template" "public_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
-  depends_on    = ["data.local_file.init"]
+  #depends_on    = ["data.local_file.init"]
   
   iam_instance_profile {
     name = "${aws_iam_instance_profile.s3_access.name}"
@@ -117,7 +117,7 @@ resource "aws_launch_template" "private_cluster" {
   image_id      = "${var.ec2_image_id}"
   instance_type = "${var.instance_type}"
   key_name      = "${var.ssh_key}"
-  depends_on    = ["data.local_file.init"]
+  #depends_on    = ["data.local_file.init"]
   
   iam_instance_profile {
     name = "${aws_iam_instance_profile.s3_access.name}"
@@ -389,20 +389,6 @@ resource "aws_iam_role" "ec2_trusted_entity_to_s3" {
   name                = "ec2_trusted_entity_to_s3"
   path                = "/"
   assume_role_policy  = "${data.aws_iam_policy_document.ec2_assume_role.json}"
-#  assume_role_policy = <<EOF
-#{
-#  "Version": "2012-10-17",
-#  "Statement": [
-#    {
-#      "Effect": "Allow",
-#      "Principal": {
-#        "Service": "ec2.amazonaws.com"
-#      },
-#      "Action": "sts:AssumeRole"
-#    }
-#  ]
-#}
-#EOF
 }
 ###################
 # Policy attachment
@@ -420,29 +406,6 @@ resource "aws_iam_policy" "s3_policy" {
   name        = "flugel-s3-policy"
   description = "Especific policy to get acces to bucket ${var.bucket_name}"
   policy      = "${data.aws_iam_policy_document.s3_access_policy.json}"
-#  policy = <<EOF
-#{
-#  "Version": "2012-10-17",
-#  "Statement": [
-#    {
-#      "Effect": "Allow",
-#      "Action": [
-#        "s3:Get*",
-#        "s3:List*"
-#      ],
-#      "Resource": "${aws_s3_bucket.flugel.arn}/*"
-#    },
-#    {
-#      "Effect": "Allow",
-#      "Action": [
-#        "s3:Get*",
-#        "s3:List*"
-#      ],
-#      "Resource": "${aws_s3_bucket.flugel.arn}"
-#    }
-#  ]
-#}
-#EOF
 }
 
 ##############
@@ -453,9 +416,10 @@ data "local_file" "init" {
     depends_on = ["local_file.init"]
 }
 resource "local_file" "init" {
-  content   = templatefile("${path.module}/init.tpl", "${local.env_vars}")
+  content   = "${templatefile("${path.module}/init.tpl","${local.env_vars}")}"
   filename  = "${path.module}/init.sh"
 }
+
 
 # Bucket policy data source
 data "aws_iam_policy_document" "s3_access_policy" {
