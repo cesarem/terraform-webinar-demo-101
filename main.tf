@@ -99,7 +99,8 @@ resource "aws_launch_template" "public_cluster" {
     name = "${aws_iam_instance_profile.s3_access.name}"
   }
   
-  user_data = "${data.local_file.init.content_base64}"
+  #user_data = "${data.local_file.init.content_base64}"
+  user_data = "${base64encode("${data.template_file.init.rendered}")}"
   
   network_interfaces {
     associate_public_ip_address = true
@@ -123,7 +124,8 @@ resource "aws_launch_template" "private_cluster" {
     name = "${aws_iam_instance_profile.s3_access.name}"
   }
   
-  user_data = "${data.local_file.init.content_base64}"
+  #user_data = "${data.local_file.init.content_base64}"
+  user_data = "${base64encode("${data.template_file.init.rendered}")}"
   
   network_interfaces {
     associate_public_ip_address = false
@@ -411,14 +413,20 @@ resource "aws_iam_policy" "s3_policy" {
 ##############
 # Data sources
 ##############
-data "local_file" "init" {
-    filename = "${path.module}/init.sh"
-    depends_on = ["local_file.init"]
+#data "local_file" "init" {
+#    filename = "${path.module}/init.sh"
+#    depends_on = ["local_file.init"]
+#}
+#resource "local_file" "init" {
+#  content   = "${templatefile("${path.module}/init.tpl","${local.env_vars}")}"
+#  filename  = "${path.module}/init.sh"
+#}
+
+data "template_file" "init" {
+  template = "${file("${path.module}/init.tpl")}"
+  vars = "${local.env_vars}"
 }
-resource "local_file" "init" {
-  content   = "${templatefile("${path.module}/init.tpl","${local.env_vars}")}"
-  filename  = "${path.module}/init.sh"
-}
+
 
 
 # Bucket policy data source

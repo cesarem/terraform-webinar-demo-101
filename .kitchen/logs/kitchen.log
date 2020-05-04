@@ -1,3 +1,3 @@
-I, [2020-04-16T05:10:36.835694 #22550]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
-I, [2020-04-16T05:10:37.704193 #22550]  INFO -- Kitchen: -----> Destroying <kt-suite-terraform>...
-I, [2020-04-16T05:13:07.173673 #22550]  INFO -- Kitchen: -----> Test Kitchen is finished. (2m30.34s)
+I, [2020-04-18T05:02:57.088941 #10169]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
+I, [2020-04-18T05:02:57.490280 #10169]  INFO -- Kitchen: -----> Destroying <kt-suite-aws>...
+I, [2020-04-18T05:05:45.349062 #10169]  INFO -- Kitchen: -----> Test Kitchen is finished. (2m48.26s)
