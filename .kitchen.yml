@@ -20,7 +20,7 @@ verifier:
       backend: ssh
       user: ubuntu
       key_files:
-        - ~/environment/test1/test/assets/aws-ec2-servers-ohio.pem 
+        - ~/environment/aws-ec2-servers-ohio.pem 
       hosts_output: instance_dns
       reporter:
         - documentation
