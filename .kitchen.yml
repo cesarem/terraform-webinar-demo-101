@@ -2,20 +2,28 @@
 driver:
   name: terraform
   root_module_directory: test/fixtures/tf_module
-  parallelism: 4
+  variable_files:
+    - terraform.tfvars
 
 provisioner:
   name: terraform
 
-verifier:
-  name: awspec
-
 platforms:
-  - name: aws
+  - name: ubuntu
+
+verifier:
+  name: terraform
+  systems:
+    - name: default
+      controls:
+        - operating_system
+      backend: ssh
+      user: ubuntu
+      key_files:
+        - ~/environment/test1/test/assets/aws-ec2-servers-ohio.pem 
+      hosts_output: instance_dns
+      reporter:
+        - documentation
 
 suites:
   - name: kt_suite
-    verifier:
-      name: "awspec"
-      patterns:
-        - "test/integration/kt_suite/controls/bucket.rb"

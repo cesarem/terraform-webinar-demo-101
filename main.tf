@@ -424,7 +424,11 @@ resource "aws_iam_policy" "s3_policy" {
 
 data "template_file" "init" {
   template = "${file("${path.module}/init.tpl")}"
-  vars = "${local.env_vars}"
+  vars = {
+    lb_host   = "${aws_lb.alb.dns_name}"
+    region    = "${var.region}"
+    bucket    = "${var.bucket_name}"
+  }
 }
 
 

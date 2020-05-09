@@ -1,3 +1,9 @@
 ---
 name: default
-
+title: Flugel Kitchen-Terraform Test
+version: 0.1.0
+attributes:
+  - name: load_balancer_fqdn
+    type: string
+    required: true
+    description: Load balancer fully qualified domain name

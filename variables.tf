@@ -37,10 +37,3 @@ variable "ssh_key" {
   default     = "aws-ec2-servers"
 }
 
-locals {
-  env_vars = {
-    lb_host   = "${aws_lb.alb.dns_name}"
-    region    = "${var.region}"
-    bucket    = "${var.bucket_name}"
-  }
-}
