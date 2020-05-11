@@ -1,0 +1,31 @@
+I, [2020-05-11T14:54:30.038414 #3892]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
+E, [2020-05-11T14:54:30.040611 #3892] ERROR -- Kitchen: ------Exception-------
+E, [2020-05-11T14:54:30.040643 #3892] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2020-05-11T14:54:30.040658 #3892] ERROR -- Kitchen: Message: Kitchen YAML file /home/ec2-user/environment/test1/test/fixtures/tf_module/kitchen.yml does not exist.
+E, [2020-05-11T14:54:30.040671 #3892] ERROR -- Kitchen: ----------------------
+E, [2020-05-11T14:54:30.040681 #3892] ERROR -- Kitchen: ------Backtrace-------
+E, [2020-05-11T14:54:30.040691 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/loader/yaml.rb:65:in `read'
+E, [2020-05-11T14:54:30.040702 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/config.rb:154:in `data'
+E, [2020-05-11T14:54:30.040712 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/config.rb:132:in `suites'
+E, [2020-05-11T14:54:30.040722 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/config.rb:184:in `filter_instances'
+E, [2020-05-11T14:54:30.040732 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/config.rb:143:in `build_instances'
+E, [2020-05-11T14:54:30.040743 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/config.rb:117:in `instances'
+E, [2020-05-11T14:54:30.040754 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/command.rb:112:in `filtered_instances'
+E, [2020-05-11T14:54:30.040764 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/command.rb:142:in `parse_subcommand'
+E, [2020-05-11T14:54:30.040774 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/command/action.rb:35:in `block in call'
+E, [2020-05-11T14:54:30.040784 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/rubies/ruby-2.6.3/lib/ruby/2.6.0/benchmark.rb:293:in `measure'
+E, [2020-05-11T14:54:30.040794 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/command/action.rb:34:in `call'
+E, [2020-05-11T14:54:30.040804 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/cli.rb:52:in `perform'
+E, [2020-05-11T14:54:30.040813 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/cli.rb:198:in `block (2 levels) in <class:CLI>'
+E, [2020-05-11T14:54:30.040835 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/thor-0.20.3/lib/thor/command.rb:27:in `run'
+E, [2020-05-11T14:54:30.040853 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/thor-0.20.3/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2020-05-11T14:54:30.040865 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/thor-0.20.3/lib/thor.rb:387:in `dispatch'
+E, [2020-05-11T14:54:30.040875 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/thor-0.20.3/lib/thor/base.rb:466:in `start'
+E, [2020-05-11T14:54:30.040885 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/bin/kitchen:13:in `block in <top (required)>'
+E, [2020-05-11T14:54:30.040895 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/lib/kitchen/errors.rb:171:in `with_friendly_errors'
+E, [2020-05-11T14:54:30.040905 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/test-kitchen-2.4.0/bin/kitchen:13:in `<top (required)>'
+E, [2020-05-11T14:54:30.040915 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/bin/kitchen:23:in `load'
+E, [2020-05-11T14:54:30.040925 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/bin/kitchen:23:in `<main>'
+E, [2020-05-11T14:54:30.040935 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'
+E, [2020-05-11T14:54:30.040945 #3892] ERROR -- Kitchen: /home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `<main>'
+E, [2020-05-11T14:54:30.040962 #3892] ERROR -- Kitchen: ----End Backtrace-----

@@ -90,9 +90,10 @@ terraform apply
 When the `apply` command completes, you should see the name of the bucket created, for instance:
 
 ```
-Outputs:
+Outputs example:
 
-bucket_id = flugel-test1-bucket
+lb_dns_name = http://flugel-alb-1-686972612.us-east-1.elb.amazonaws.com/
+timestamp = 2020-03-24T14:14:50Z
 ```
 
 Clean up when you're done:
