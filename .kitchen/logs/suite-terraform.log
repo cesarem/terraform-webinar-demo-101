@@ -1,0 +1,52 @@
+I, [2020-05-10T20:54:41.466523 #18819]  INFO -- suite-terraform: -----> Destroying <suite-terraform>...
+W, [2020-05-10T20:54:41.467146 #18819]  WARN -- suite-terraform: Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.13.0...
+W, [2020-05-10T20:54:41.467419 #18819]  WARN -- suite-terraform: Reading the Terraform client version...
+I, [2020-05-10T20:54:41.495680 #18819]  INFO -- suite-terraform: Terraform v0.12.24
+I, [2020-05-10T20:54:42.107129 #18819]  INFO -- suite-terraform: + provider.aws v2.61.0
+I, [2020-05-10T20:54:42.107839 #18819]  INFO -- suite-terraform: + provider.template v2.1.2
+W, [2020-05-10T20:54:42.130254 #18819]  WARN -- suite-terraform: Finished reading the Terraform client version.
+W, [2020-05-10T20:54:42.130504 #18819]  WARN -- suite-terraform: Finished verifying the Terraform client version.
+W, [2020-05-10T20:54:42.130551 #18819]  WARN -- suite-terraform: Initializing the Terraform working directory...
+I, [2020-05-10T20:54:42.161841 #18819]  INFO -- suite-terraform: [0m[1mInitializing modules...[0m
+I, [2020-05-10T20:54:42.181307 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.181904 #18819]  INFO -- suite-terraform: [0m[1mInitializing the backend...[0m
+I, [2020-05-10T20:54:42.185095 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.185464 #18819]  INFO -- suite-terraform: [0m[1mInitializing provider plugins...[0m
+I, [2020-05-10T20:54:42.801839 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.801903 #18819]  INFO -- suite-terraform: The following providers do not have any version constraints in configuration,
+I, [2020-05-10T20:54:42.801924 #18819]  INFO -- suite-terraform: so the latest version was installed.
+I, [2020-05-10T20:54:42.801941 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.801955 #18819]  INFO -- suite-terraform: To prevent automatic upgrades to new major versions that may contain breaking
+I, [2020-05-10T20:54:42.801985 #18819]  INFO -- suite-terraform: changes, it is recommended to add version = "..." constraints to the
+I, [2020-05-10T20:54:42.802001 #18819]  INFO -- suite-terraform: corresponding provider blocks in configuration, with the constraint strings
+I, [2020-05-10T20:54:42.802016 #18819]  INFO -- suite-terraform: suggested below.
+I, [2020-05-10T20:54:42.802748 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.803167 #18819]  INFO -- suite-terraform: * provider.template: version = "~> 2.1"
+I, [2020-05-10T20:54:42.803533 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.803987 #18819]  INFO -- suite-terraform: [0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
+W, [2020-05-10T20:54:42.816584 #18819]  WARN -- suite-terraform: Finished initializing the Terraform working directory.
+W, [2020-05-10T20:54:42.817007 #18819]  WARN -- suite-terraform: Selecting the kitchen-terraform-suite-terraform Terraform workspace...
+I, [2020-05-10T20:54:42.846126 #18819]  INFO -- suite-terraform: [31m
+I, [2020-05-10T20:54:42.848375 #18819]  INFO -- suite-terraform: Workspace "kitchen-terraform-suite-terraform" doesn't exist.
+I, [2020-05-10T20:54:42.848419 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.849621 #18819]  INFO -- suite-terraform: You can create this workspace with the "new" subcommand.[0m[0m
+W, [2020-05-10T20:54:42.872084 #18819]  WARN -- suite-terraform: Creating the kitchen-terraform-suite-terraform Terraform workspace...
+I, [2020-05-10T20:54:42.903600 #18819]  INFO -- suite-terraform: [0m[32m[1mCreated and switched to workspace "kitchen-terraform-suite-terraform"![0m[32m
+I, [2020-05-10T20:54:42.903672 #18819]  INFO -- suite-terraform: 
+I, [2020-05-10T20:54:42.903693 #18819]  INFO -- suite-terraform: You're now on a new, empty workspace. Workspaces isolate their state,
+I, [2020-05-10T20:54:42.903709 #18819]  INFO -- suite-terraform: so if you run "terraform plan" Terraform will not see any existing state
+I, [2020-05-10T20:54:42.905535 #18819]  INFO -- suite-terraform: for this configuration.[0m
+W, [2020-05-10T20:54:42.927764 #18819]  WARN -- suite-terraform: Finished creating the kitchen-terraform-suite-terraform Terraform workspace.
+W, [2020-05-10T20:54:42.927864 #18819]  WARN -- suite-terraform: Destroying the Terraform-managed infrastructure...
+I, [2020-05-10T20:54:45.946181 #18819]  INFO -- suite-terraform: [0m[1mmodule.kt_test.data.aws_iam_policy_document.ec2_assume_role: Refreshing state...[0m
+I, [2020-05-10T20:54:45.947332 #18819]  INFO -- suite-terraform: [0m[1mmodule.kt_test.data.aws_iam_policy_document.s3_access_policy: Refreshing state...[0m
+I, [2020-05-10T20:54:47.304788 #18819]  INFO -- suite-terraform: [0m[1m[32m
+I, [2020-05-10T20:54:47.304863 #18819]  INFO -- suite-terraform: Destroy complete! Resources: 0 destroyed.[0m
+W, [2020-05-10T20:54:47.319518 #18819]  WARN -- suite-terraform: Finished destroying the Terraform-managed infrastructure.
+W, [2020-05-10T20:54:47.319670 #18819]  WARN -- suite-terraform: Selecting the default Terraform workspace...
+I, [2020-05-10T20:54:47.351820 #18819]  INFO -- suite-terraform: [0m[32mSwitched to workspace "default".[0m
+W, [2020-05-10T20:54:47.374391 #18819]  WARN -- suite-terraform: Finished selecting the default Terraform workspace.
+W, [2020-05-10T20:54:47.374491 #18819]  WARN -- suite-terraform: Deleting the kitchen-terraform-suite-terraform Terraform workspace...
+I, [2020-05-10T20:54:47.408418 #18819]  INFO -- suite-terraform: [0m[32mDeleted workspace "kitchen-terraform-suite-terraform"![0m
+W, [2020-05-10T20:54:47.430977 #18819]  WARN -- suite-terraform: Finished deleting the kitchen-terraform-suite-terraform Terraform workspace.
+I, [2020-05-10T20:54:47.431745 #18819]  INFO -- suite-terraform: Finished destroying <suite-terraform> (0m5.96s).

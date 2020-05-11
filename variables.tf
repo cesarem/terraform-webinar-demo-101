@@ -36,4 +36,3 @@ variable "ssh_key" {
   description = "SSH key name"
   default     = "aws-ec2-servers"
 }
-

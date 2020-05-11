@@ -3,7 +3,19 @@ name: default
 title: Flugel Kitchen-Terraform Test
 version: 0.1.0
 attributes:
-  - name: load_balancer_fqdn
+  - name: url_file1
     type: string
     required: true
-    description: Load balancer fully qualified domain name
+    description: test file 1
+  - name: url_file2
+    type: string
+    required: true
+    description: test file 2
+  - name: lb_url
+    type: string
+    required: true
+    description: load balancer url
+  - name: file_timestamp
+    type: string
+    required: true
+    description: file creation time stamp

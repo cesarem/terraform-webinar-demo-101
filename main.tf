@@ -1,13 +1,13 @@
 provider "aws" {
-  version = "~> 2.57"
-  region  = "${var.region}"
+  version = "~> 2.61"
+  region  = var.region
 }
 
 ###########
 # S3 bucket
 ###########
 resource "aws_s3_bucket" "flugel" {
-  bucket = "${var.bucket_name}"
+  bucket = var.bucket_name
   acl    = "private"
 
   tags = {
@@ -19,14 +19,14 @@ resource "aws_s3_bucket" "flugel" {
 # S3 Objects
 ############
 resource "aws_s3_bucket_object" "object_1" {
-  bucket = "${aws_s3_bucket.flugel.id}"
+  bucket = aws_s3_bucket.flugel.id
   key    = "test1.txt"
-  content = "${timestamp()}"
+  content = timestamp()
 }
 resource "aws_s3_bucket_object" "object_2" {
-  bucket = "${aws_s3_bucket.flugel.id}"
+  bucket = aws_s3_bucket.flugel.id
   key    = "test2.txt"
-  content = "${timestamp()}"
+  content = timestamp()
 }
 
 #####
@@ -44,7 +44,7 @@ resource "aws_vpc" "main" {
 # Internet Gateways
 ###################
 resource "aws_internet_gateway" "gw" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
 
   tags = {
     Name = "Flugel Internet GW"
@@ -55,20 +55,20 @@ resource "aws_internet_gateway" "gw" {
 # Route Tables
 ##############
 resource "aws_route_table" "inet" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.gw.id}"
+    gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
     Name = "Flugel Internet Route Table"
   }
 }
 resource "aws_route_table" "nat" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_nat_gateway.natgw.id}"
+    gateway_id = aws_nat_gateway.natgw.id
   }
   tags = {
     Name = "Flugel NAT Route Table"
@@ -76,13 +76,13 @@ resource "aws_route_table" "nat" {
 }
 # Route table association (to Internet)
 resource "aws_route_table_association" "pub_assoc" {
-  subnet_id      = "${aws_subnet.public.id}"
-  route_table_id = "${aws_route_table.inet.id}"
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.inet.id
 }
 # Route table association NAT
 resource "aws_route_table_association" "nat_assoc" {
-  subnet_id      = "${aws_subnet.private.id}"
-  route_table_id = "${aws_route_table.nat.id}"
+  subnet_id      = aws_subnet.private.id
+  route_table_id = aws_route_table.nat.id
 }
 
 ##################
@@ -90,21 +90,19 @@ resource "aws_route_table_association" "nat_assoc" {
 ##################
 resource "aws_launch_template" "public_cluster" {
   name_prefix   = "public_cluster"
-  image_id      = "${var.ec2_image_id}"
-  instance_type = "${var.instance_type}"
-  key_name      = "${var.ssh_key}"
-  #depends_on    = ["data.local_file.init"]
+  image_id      = var.ec2_image_id
+  instance_type = var.instance_type
+  key_name      = var.ssh_key
   
   iam_instance_profile {
-    name = "${aws_iam_instance_profile.s3_access.name}"
+    name = aws_iam_instance_profile.s3_access.name
   }
   
-  #user_data = "${data.local_file.init.content_base64}"
-  user_data = "${base64encode("${data.template_file.init.rendered}")}"
+  user_data = base64encode(data.template_file.init.rendered)
   
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = ["${aws_security_group.public_sg.id}"]
+    security_groups             = [aws_security_group.public_sg.id]
     delete_on_termination       = true
   }
   
@@ -115,21 +113,19 @@ resource "aws_launch_template" "public_cluster" {
 
 resource "aws_launch_template" "private_cluster" {
   name_prefix   = "private_cluster"
-  image_id      = "${var.ec2_image_id}"
-  instance_type = "${var.instance_type}"
-  key_name      = "${var.ssh_key}"
-  #depends_on    = ["data.local_file.init"]
+  image_id      = var.ec2_image_id
+  instance_type = var.instance_type
+  key_name      = var.ssh_key
   
   iam_instance_profile {
-    name = "${aws_iam_instance_profile.s3_access.name}"
+    name = aws_iam_instance_profile.s3_access.name
   }
   
-  #user_data = "${data.local_file.init.content_base64}"
-  user_data = "${base64encode("${data.template_file.init.rendered}")}"
+  user_data = base64encode(data.template_file.init.rendered)
   
   network_interfaces {
     associate_public_ip_address = false
-    security_groups             = ["${aws_security_group.private_sg.id}"]
+    security_groups             = [aws_security_group.private_sg.id]
     delete_on_termination       = true
   }
   
@@ -142,16 +138,16 @@ resource "aws_launch_template" "private_cluster" {
 # Auto scaling groups
 #####################
 resource "aws_autoscaling_group" "public_asg" {
-  vpc_zone_identifier       = ["${aws_subnet.public.id}"]
-  target_group_arns         = ["${aws_lb_target_group.asg.arn}"]
-  health_check_grace_period = 600
+  vpc_zone_identifier       = [aws_subnet.public.id]
+  target_group_arns         = [aws_lb_target_group.asg.arn]
+  health_check_grace_period = 300
   health_check_type         = "EC2"
   desired_capacity          = 1
   max_size                  = 1
   min_size                  = 1
 
   launch_template {
-    id      = "${aws_launch_template.public_cluster.id}"
+    id      = aws_launch_template.public_cluster.id
     version = "$Latest"
   }
   
@@ -163,16 +159,16 @@ resource "aws_autoscaling_group" "public_asg" {
 }
 
 resource "aws_autoscaling_group" "private_asg" {
-  vpc_zone_identifier       = ["${aws_subnet.private.id}"]
-  target_group_arns         = ["${aws_lb_target_group.asg.arn}"]
-  health_check_grace_period = 600
+  vpc_zone_identifier       = [aws_subnet.private.id]
+  target_group_arns         = [aws_lb_target_group.asg.arn]
+  health_check_grace_period = 300
   health_check_type         = "EC2"
   desired_capacity          = 1
   max_size                  = 1
   min_size                  = 1
 
   launch_template {
-    id      = "${aws_launch_template.private_cluster.id}"
+    id      = aws_launch_template.private_cluster.id
     version = "$Latest"
   }
   
@@ -187,8 +183,8 @@ resource "aws_autoscaling_group" "private_asg" {
 # Security Groups
 #################
 resource "aws_security_group" "alb_sg" {
-  name          = "${var.alb_sg_name}"
-  vpc_id        = "${aws_vpc.main.id}"
+  name          = var.alb_sg_name
+  vpc_id        = aws_vpc.main.id
   tags = {
     Name = "flugel_allow_http"
   }
@@ -210,13 +206,13 @@ resource "aws_security_group" "alb_sg" {
 
 resource "aws_security_group" "public_sg" {
   name          = "public-sg-1"
-  vpc_id        = "${aws_vpc.main.id}"
+  vpc_id        = aws_vpc.main.id
   tags = {
     Name = "Flugel public sg traffic"
   }
   ingress {
-    from_port   = "${var.server_port}"
-    to_port     = "${var.server_port}"
+    from_port   = var.server_port
+    to_port     = var.server_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -236,14 +232,14 @@ resource "aws_security_group" "public_sg" {
 
 resource "aws_security_group" "private_sg" {
   name          = "private-sg-1"
-  vpc_id        = "${aws_vpc.main.id}"
+  vpc_id        = aws_vpc.main.id
   tags = {
     Name = "Flugel private sg traffic"
   }
   ingress {
-    from_port   = "${var.server_port}"
-    to_port     = "${var.server_port}"
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
@@ -258,7 +254,7 @@ resource "aws_security_group" "private_sg" {
 # Subnets
 #########
 resource "aws_subnet" "private" {
-  vpc_id     = "${aws_vpc.main.id}"
+  vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "${var.region}b"
   
@@ -273,7 +269,7 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id     = "${aws_vpc.main.id}"
+  vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.0.0/24"
   availability_zone = "${var.region}a"
 
@@ -291,11 +287,11 @@ resource "aws_subnet" "public" {
 # Load Balancers
 ################
 resource "aws_lb" "alb" {
-  name               = "${var.alb_name}"
+  name               = var.alb_name
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["${aws_security_group.alb_sg.id}"]
-  subnets            = ["${aws_subnet.public.id}", "${aws_subnet.private.id}"]
+  security_groups    = [aws_security_group.alb_sg.id]
+  subnets            = [aws_subnet.public.id, aws_subnet.private.id]
   
   tags = {
     Name = "Flugel ALB"
@@ -303,7 +299,7 @@ resource "aws_lb" "alb" {
 }
 # HTTP listener
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = "${aws_lb.alb.arn}"
+  load_balancer_arn = aws_lb.alb.arn
   port              = 80
   protocol          = "HTTP"
 
@@ -320,10 +316,10 @@ resource "aws_lb_listener" "http" {
 }
 # Target group
 resource "aws_lb_target_group" "asg" {
-  name      = "${aws_lb.alb.name}"
-  port      = "${var.server_port}"
+  name      = aws_lb.alb.name
+  port      = var.server_port
   protocol  = "HTTP"
-  vpc_id    = "${aws_vpc.main.id}"
+  vpc_id    = aws_vpc.main.id
 
   health_check {
     path                = "/"
@@ -337,17 +333,18 @@ resource "aws_lb_target_group" "asg" {
 }
 # Listener rule
 resource "aws_lb_listener_rule" "asg" {
-  listener_arn = "${aws_lb_listener.http.arn}"
+  listener_arn = aws_lb_listener.http.arn
   priority     = 100
 
   condition {
-    field  = "path-pattern"
-    values = ["*"]
+    path_pattern {
+      values = ["*"]
+    }
   }
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.asg.arn}"
+    target_group_arn = aws_lb_target_group.asg.arn
   }
 }
 
@@ -356,7 +353,7 @@ resource "aws_lb_listener_rule" "asg" {
 #############
 resource "aws_eip" "natgw" {
   vpc         = true
-  depends_on  = ["aws_internet_gateway.gw"]
+  depends_on  = [aws_internet_gateway.gw]
   
   tags = {
     Name = "Flugel EIP nat gw"
@@ -368,8 +365,8 @@ resource "aws_eip" "natgw" {
 # NAT Gateways
 ##############
 resource "aws_nat_gateway" "natgw" {
-  allocation_id = "${aws_eip.natgw.id}"
-  subnet_id     = "${aws_subnet.public.id}"
+  allocation_id = aws_eip.natgw.id
+  subnet_id     = aws_subnet.public.id
 
   tags = {
     Name = "gw NAT"
@@ -381,7 +378,7 @@ resource "aws_nat_gateway" "natgw" {
 ###################
 resource "aws_iam_instance_profile" "s3_access" {
   name = "s3_access_profile"
-  role = "${aws_iam_role.ec2_trusted_entity_to_s3.name}"
+  role = aws_iam_role.ec2_trusted_entity_to_s3.name
 }
 
 ###########
@@ -390,15 +387,14 @@ resource "aws_iam_instance_profile" "s3_access" {
 resource "aws_iam_role" "ec2_trusted_entity_to_s3" {
   name                = "ec2_trusted_entity_to_s3"
   path                = "/"
-  assume_role_policy  = "${data.aws_iam_policy_document.ec2_assume_role.json}"
+  assume_role_policy  = data.aws_iam_policy_document.ec2_assume_role.json
 }
 ###################
 # Policy attachment
 ###################
 resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
-    role = "${aws_iam_role.ec2_trusted_entity_to_s3.name}"
-    #policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-    policy_arn = "${aws_iam_policy.s3_policy.arn}"
+    role = aws_iam_role.ec2_trusted_entity_to_s3.name
+    policy_arn = aws_iam_policy.s3_policy.arn
 }
 
 ############
@@ -407,31 +403,17 @@ resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
 resource "aws_iam_policy" "s3_policy" {
   name        = "flugel-s3-policy"
   description = "Especific policy to get acces to bucket ${var.bucket_name}"
-  policy      = "${data.aws_iam_policy_document.s3_access_policy.json}"
+  policy      = data.aws_iam_policy_document.s3_access_policy.json
 }
-
-##############
-# Data sources
-##############
-#data "local_file" "init" {
-#    filename = "${path.module}/init.sh"
-#    depends_on = ["local_file.init"]
-#}
-#resource "local_file" "init" {
-#  content   = "${templatefile("${path.module}/init.tpl","${local.env_vars}")}"
-#  filename  = "${path.module}/init.sh"
-#}
 
 data "template_file" "init" {
-  template = "${file("${path.module}/init.tpl")}"
+  template = file("${path.module}/init.tpl")
   vars = {
-    lb_host   = "${aws_lb.alb.dns_name}"
-    region    = "${var.region}"
-    bucket    = "${var.bucket_name}"
+    lb_host   = aws_lb.alb.dns_name
+    region    = var.region
+    bucket    = var.bucket_name
   }
 }
-
-
 
 # Bucket policy data source
 data "aws_iam_policy_document" "s3_access_policy" {

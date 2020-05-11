@@ -9,7 +9,7 @@ provisioner:
   name: terraform
 
 platforms:
-  - name: ubuntu
+  - name: flugel
 
 verifier:
   name: terraform
@@ -17,6 +17,7 @@ verifier:
     - name: default
       controls:
         - operating_system
+        - http_requests
       backend: ssh
       user: ubuntu
       key_files:
