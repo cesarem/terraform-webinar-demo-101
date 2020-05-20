@@ -1,3 +1,0 @@
-I, [2020-05-11T14:55:16.181990 #3916]  INFO -- Kitchen: -----> Starting Test Kitchen (v2.4.0)
-I, [2020-05-11T14:55:18.037158 #3916]  INFO -- Kitchen: -----> Destroying <kt-suite-flugel>...
-I, [2020-05-11T14:57:14.792881 #3916]  INFO -- Kitchen: -----> Test Kitchen is finished. (1m58.61s)
