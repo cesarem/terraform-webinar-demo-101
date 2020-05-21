@@ -2,9 +2,7 @@
 driver:
   name: terraform
   root_module_directory: test/fixtures/tf_module
-  variable_files:
-    - terraform.tfvars
-
+  
 provisioner:
   name: terraform
 

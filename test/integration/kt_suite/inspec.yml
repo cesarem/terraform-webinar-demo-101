@@ -2,6 +2,8 @@
 name: default
 title: Flugel Kitchen-Terraform Test
 version: 0.1.0
+supports:
+  - platform-name: ubuntu
 attributes:
   - name: url_file1
     type: string
