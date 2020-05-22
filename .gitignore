@@ -13,6 +13,10 @@ crash.log
 # version control.
 #
 # example.tfvars
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -31,5 +35,7 @@ override.tf.json
 # txt files
 *.txt
 Gemfile.lock
-.kitchen/logs/kitchen.log
-.kitchen/logs/kt-suite-aws.log
+**/.kitchen/*
+
+# sh files
+init.sh

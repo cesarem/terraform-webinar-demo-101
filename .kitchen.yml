@@ -2,20 +2,27 @@
 driver:
   name: terraform
   root_module_directory: test/fixtures/tf_module
-  parallelism: 4
-
+  
 provisioner:
   name: terraform
 
-verifier:
-  name: awspec
-
 platforms:
-  - name: aws
+  - name: flugel
+
+verifier:
+  name: terraform
+  systems:
+    - name: default
+      controls:
+        - operating_system
+        - http_requests
+      backend: ssh
+      user: ubuntu
+      key_files:
+        - ~/environment/aws-ec2-servers-ohio.pem 
+      hosts_output: instance_dns
+      reporter:
+        - documentation
 
 suites:
   - name: kt_suite
-    verifier:
-      name: "awspec"
-      patterns:
-        - "test/integration/kt_suite/controls/bucket.rb"

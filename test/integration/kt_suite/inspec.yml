@@ -1,3 +1,23 @@
 ---
 name: default
-
+title: Flugel Kitchen-Terraform Test
+version: 0.1.0
+supports:
+  - platform-name: ubuntu
+attributes:
+  - name: url_file1
+    type: string
+    required: true
+    description: test file 1
+  - name: url_file2
+    type: string
+    required: true
+    description: test file 2
+  - name: lb_url
+    type: string
+    required: true
+    description: load balancer url
+  - name: file_timestamp
+    type: string
+    required: true
+    description: file creation time stamp

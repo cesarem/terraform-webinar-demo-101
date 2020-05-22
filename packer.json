@@ -1,0 +1,24 @@
+{
+  "builders": [{
+		"ami_name": "flugel-test",
+		"instance_type": "t2.micro",
+		"region": "us-east-1",
+		"type": "amazon-ebs",
+		"source_ami": "ami-039a49e70ea773ffc",
+		"ssh_username": "ubuntu"
+	}],
+	"provisioners": [{
+		"type": "shell",
+		"inline": [
+			"curl -fsSL https://get.docker.com -o get-docker.sh",
+      "sudo sh get-docker.sh",
+      "sudo usermod -aG docker ubuntu",
+      "sleep 5",
+      "sudo curl -L \"https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
+      "sudo chmod +x /usr/local/bin/docker-compose",
+      "sudo mkdir -p /opt/flugel-it",
+      "cd /opt/flugel-it",
+      "sudo git clone https://github.com/cesaramaya-flugel/reverse-proxy.git"
+		]
+	}]
+}
