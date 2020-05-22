@@ -1,7 +1,13 @@
 provider "aws" {
-  version = "~> 2.61"
+  version = "~> 2.63"
   region  = var.region
 }
+
+# Instance Image ID
+data "aws_ssm_parameter" "image_id" {
+  name = "flugel-it-image_id"
+}
+
 
 ###########
 # S3 bucket
@@ -90,7 +96,7 @@ resource "aws_route_table_association" "nat_assoc" {
 ##################
 resource "aws_launch_template" "public_cluster" {
   name_prefix   = "public_cluster"
-  image_id      = var.ec2_image_id
+  image_id      = data.aws_ssm_parameter.image_id.value
   instance_type = var.instance_type
   key_name      = var.ssh_key
   
@@ -113,7 +119,7 @@ resource "aws_launch_template" "public_cluster" {
 
 resource "aws_launch_template" "private_cluster" {
   name_prefix   = "private_cluster"
-  image_id      = var.ec2_image_id
+  image_id      = data.aws_ssm_parameter.image_id.value
   instance_type = var.instance_type
   key_name      = var.ssh_key
   
