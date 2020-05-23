@@ -36,7 +36,6 @@ module "kt_test" {
   instance_sg_name  = var.instance_sg_name
   alb_name          = var.alb_name
   server_port       = var.server_port
-  ec2_image_id      = var.ec2_image_id
   instance_type     = var.instance_type
   region            = var.region
   ssh_key           = var.ssh_key

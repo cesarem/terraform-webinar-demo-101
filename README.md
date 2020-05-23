@@ -4,10 +4,12 @@
 
 ## Pre-requisites
 
-* [Terraform](https://www.terraform.io/) in the versions interval of >= 0.11.4, < 0.13.0 
+* [Terraform](https://www.terraform.io/) in the versions interval of >= 0.12 
+* [Packer](https://www.packer.io/)
 * [Kitchen-Terraform](https://github.com/newcontext-oss/kitchen-terraform)
 * [Ruby](https://www.ruby-lang.org/en/) in the versions interval of >= 2.4, < 2.7
 * [Bundler](https://bundler.io/index.html#getting-started) should be used to manage versions of Kitchen-Terraform on the system.
+* [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 * You must have an [Amazon Web Services (AWS) account](http://aws.amazon.com/).
 
 Note that this configuration was executed in a Linux Ubuntu machine, nonetheless, it can be easily ported to Windows.
@@ -27,6 +29,9 @@ Kitchen-Terraform supports versions of Terraform in the interval of
 
 [tfenv](https://github.com/kamatama41/tfenv) can be used to manage versions of Terraform on the system.
 
+### Packer
+[Download a pre-built Packer binary](https://www.packer.io/downloads/) for your operating system.
+
 ### Ruby
 
 Kitchen-Terraform is written in [Ruby](https://www.ruby-lang.org/en/) which requires an
@@ -41,6 +46,9 @@ the interval of `>= 2.4, < 2.7`.
 
 [rbenv](https://github.com/rbenv/rbenv) can be used to manage versions of Ruby on the system.
 
+### Install Boto3
+```$ pip install boto3```
+
 #### Bundler
 After Ruby is installed run
 ```$ gem install bundler```
@@ -53,6 +61,18 @@ export AWS_ACCESS_KEY_ID=(your access key id)
 export AWS_SECRET_ACCESS_KEY=(your secret access key)
 ```
 ## Quick Start
+
+### Build the Instance Image
+
+```
+$ packer build -force packer.json
+```
+
+### Store the image_id in AWS Systems Manager Parameter Store
+
+```
+$ ./parameters.py packer-manifest.json
+```
 
 ### Configure and Test
 
