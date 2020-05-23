@@ -1,7 +1,7 @@
 {
   "builders": [
     {
-  	  "ami_name": "flugel-test",
+  	  "ami_name": "flugel-test-image_id",
   		"instance_type": "t2.micro",
   		"region": "us-east-1",
   		"type": "amazon-ebs",
