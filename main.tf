@@ -4,9 +4,16 @@ provider "aws" {
 }
 
 # Instance Image ID
-data "aws_ssm_parameter" "image_id" {
-  name = "flugel-it-image_id"
+data "aws_ami" "image_id" {
+  most_recent      = true
+  owners           = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["flugel-test-image_id"]
+  }
 }
+
 
 
 ###########
@@ -96,7 +103,7 @@ resource "aws_route_table_association" "nat_assoc" {
 ##################
 resource "aws_launch_template" "public_cluster" {
   name_prefix   = "public_cluster"
-  image_id      = data.aws_ssm_parameter.image_id.value
+  image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
   
@@ -119,7 +126,7 @@ resource "aws_launch_template" "public_cluster" {
 
 resource "aws_launch_template" "private_cluster" {
   name_prefix   = "private_cluster"
-  image_id      = data.aws_ssm_parameter.image_id.value
+  image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
   
