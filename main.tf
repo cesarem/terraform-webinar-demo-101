@@ -5,8 +5,8 @@ provider "aws" {
 
 # Instance Image ID
 data "aws_ami" "image_id" {
-  most_recent      = true
-  owners           = ["self"]
+  most_recent = true
+  owners      = ["self"]
 
   filter {
     name   = "name"
@@ -32,13 +32,13 @@ resource "aws_s3_bucket" "flugel" {
 # S3 Objects
 ############
 resource "aws_s3_bucket_object" "object_1" {
-  bucket = aws_s3_bucket.flugel.id
-  key    = "test1.txt"
+  bucket  = aws_s3_bucket.flugel.id
+  key     = "test1.txt"
   content = timestamp()
 }
 resource "aws_s3_bucket_object" "object_2" {
-  bucket = aws_s3_bucket.flugel.id
-  key    = "test2.txt"
+  bucket  = aws_s3_bucket.flugel.id
+  key     = "test2.txt"
   content = timestamp()
 }
 
@@ -46,8 +46,8 @@ resource "aws_s3_bucket_object" "object_2" {
 # VPC
 #####
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
-  
+  cidr_block = "10.0.0.0/16"
+
   tags = {
     Name = "Flugel VPC"
   }
@@ -106,22 +106,22 @@ resource "aws_launch_template" "public_cluster" {
   image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
-  
+
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
-  
+
   user_data = base64encode(data.template_file.init.rendered)
-  
+
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = [aws_security_group.public_sg.id]
     delete_on_termination       = true
   }
-  
+
   tags = {
-      Name = "Flugel Public Cluster"
-    }
+    Name = "Flugel Public Cluster"
+  }
 }
 
 resource "aws_launch_template" "private_cluster" {
@@ -129,22 +129,22 @@ resource "aws_launch_template" "private_cluster" {
   image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
-  
+
   iam_instance_profile {
     name = aws_iam_instance_profile.s3_access.name
   }
-  
+
   user_data = base64encode(data.template_file.init.rendered)
-  
+
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.private_sg.id]
     delete_on_termination       = true
   }
-  
+
   tags = {
-      Name = "Flugel Private Cluster"
-    }
+    Name = "Flugel Private Cluster"
+  }
 }
 
 #####################
@@ -163,7 +163,7 @@ resource "aws_autoscaling_group" "public_asg" {
     id      = aws_launch_template.public_cluster.id
     version = "$Latest"
   }
-  
+
   tag {
     key                 = "Name"
     value               = "flugel-public-asg"
@@ -184,7 +184,7 @@ resource "aws_autoscaling_group" "private_asg" {
     id      = aws_launch_template.private_cluster.id
     version = "$Latest"
   }
-  
+
   tag {
     key                 = "Name"
     value               = "flugel-private-asg"
@@ -196,8 +196,8 @@ resource "aws_autoscaling_group" "private_asg" {
 # Security Groups
 #################
 resource "aws_security_group" "alb_sg" {
-  name          = var.alb_sg_name
-  vpc_id        = aws_vpc.main.id
+  name   = var.alb_sg_name
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "flugel_allow_http"
   }
@@ -218,8 +218,8 @@ resource "aws_security_group" "alb_sg" {
 }
 
 resource "aws_security_group" "public_sg" {
-  name          = "public-sg-1"
-  vpc_id        = aws_vpc.main.id
+  name   = "public-sg-1"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Flugel public sg traffic"
   }
@@ -244,8 +244,8 @@ resource "aws_security_group" "public_sg" {
 }
 
 resource "aws_security_group" "private_sg" {
-  name          = "private-sg-1"
-  vpc_id        = aws_vpc.main.id
+  name   = "private-sg-1"
+  vpc_id = aws_vpc.main.id
   tags = {
     Name = "Flugel private sg traffic"
   }
@@ -267,14 +267,14 @@ resource "aws_security_group" "private_sg" {
 # Subnets
 #########
 resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "${var.region}b"
-  
+
   tags = {
     Name = "Flugel private subnet"
   }
-  
+
   timeouts {
     create = "10m"
     delete = "5m"
@@ -282,14 +282,14 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.0.0/24"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.0.0/24"
   availability_zone = "${var.region}a"
 
   tags = {
     Name = "Flugel public subnet"
   }
-  
+
   timeouts {
     create = "10m"
     delete = "5m"
@@ -305,7 +305,7 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.public.id, aws_subnet.private.id]
-  
+
   tags = {
     Name = "Flugel ALB"
   }
@@ -329,10 +329,10 @@ resource "aws_lb_listener" "http" {
 }
 # Target group
 resource "aws_lb_target_group" "asg" {
-  name      = aws_lb.alb.name
-  port      = var.server_port
-  protocol  = "HTTP"
-  vpc_id    = aws_vpc.main.id
+  name     = aws_lb.alb.name
+  port     = var.server_port
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.main.id
 
   health_check {
     path                = "/"
@@ -365,13 +365,13 @@ resource "aws_lb_listener_rule" "asg" {
 # Elastic IPs
 #############
 resource "aws_eip" "natgw" {
-  vpc         = true
-  depends_on  = [aws_internet_gateway.gw]
-  
+  vpc        = true
+  depends_on = [aws_internet_gateway.gw]
+
   tags = {
     Name = "Flugel EIP nat gw"
   }
-  
+
 }
 
 ##############
@@ -398,16 +398,16 @@ resource "aws_iam_instance_profile" "s3_access" {
 # IAM Roles
 ###########
 resource "aws_iam_role" "ec2_trusted_entity_to_s3" {
-  name                = "ec2_trusted_entity_to_s3"
-  path                = "/"
-  assume_role_policy  = data.aws_iam_policy_document.ec2_assume_role.json
+  name               = "ec2_trusted_entity_to_s3"
+  path               = "/"
+  assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
 }
 ###################
 # Policy attachment
 ###################
 resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
-    role = aws_iam_role.ec2_trusted_entity_to_s3.name
-    policy_arn = aws_iam_policy.s3_policy.arn
+  role       = aws_iam_role.ec2_trusted_entity_to_s3.name
+  policy_arn = aws_iam_policy.s3_policy.arn
 }
 
 ############
@@ -422,9 +422,9 @@ resource "aws_iam_policy" "s3_policy" {
 data "template_file" "init" {
   template = file("${path.module}/init.tpl")
   vars = {
-    lb_host   = aws_lb.alb.dns_name
-    region    = var.region
-    bucket    = var.bucket_name
+    lb_host = aws_lb.alb.dns_name
+    region  = var.region
+    bucket  = var.bucket_name
   }
 }
 
@@ -432,9 +432,9 @@ data "template_file" "init" {
 data "aws_iam_policy_document" "s3_access_policy" {
   statement {
     sid = "1"
-    
+
     effect = "Allow"
-    
+
     actions = [
       "s3:Get*",
       "s3:List*"
@@ -451,9 +451,9 @@ data "aws_iam_policy_document" "s3_access_policy" {
 data "aws_iam_policy_document" "ec2_assume_role" {
   statement {
     sid = ""
-    
+
     effect = "Allow"
-    
+
     principals {
       type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
