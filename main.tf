@@ -10,21 +10,28 @@ data "aws_ami" "image_id" {
 
   filter {
     name   = "name"
-    values = ["flugel-test-image_id"]
+    values = ["devops-crew-image_id"]
   }
 }
 
-
+#########################################
+# Generate random pets for resource names
+#########################################
+resource "random_pet" "server" {
+  keepers = {
+    name = var.name
+  }
+}
 
 ###########
 # S3 bucket
 ###########
-resource "aws_s3_bucket" "flugel" {
-  bucket = var.bucket_name
+resource "aws_s3_bucket" "main" {
+  bucket = "${random_pet.server.id}-devops-crew-bucket"
   acl    = "private"
 
   tags = {
-    Name = "flugel-test1-bucket"
+    Name = "devops crew demo bucket"
   }
 }
 
@@ -32,12 +39,12 @@ resource "aws_s3_bucket" "flugel" {
 # S3 Objects
 ############
 resource "aws_s3_bucket_object" "object_1" {
-  bucket  = aws_s3_bucket.flugel.id
+  bucket  = aws_s3_bucket.main.id
   key     = "test1.txt"
   content = timestamp()
 }
 resource "aws_s3_bucket_object" "object_2" {
-  bucket  = aws_s3_bucket.flugel.id
+  bucket  = aws_s3_bucket.main.id
   key     = "test2.txt"
   content = timestamp()
 }
@@ -49,7 +56,7 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "Flugel VPC"
+    Name = "DevOps Crew VPC"
   }
 }
 
@@ -60,7 +67,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "Flugel Internet GW"
+    Name = "DevOps Crew Internet GW"
   }
 }
 
@@ -74,24 +81,29 @@ resource "aws_route_table" "inet" {
     gateway_id = aws_internet_gateway.gw.id
   }
   tags = {
-    Name = "Flugel Internet Route Table"
+    Name = "DevOps Crew Internet Route Table"
   }
 }
 resource "aws_route_table" "nat" {
   vpc_id = aws_vpc.main.id
+  
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.natgw.id
   }
+  
   tags = {
-    Name = "Flugel NAT Route Table"
+    Name = "DevOps Crew NAT Route Table"
   }
+
 }
+
 # Route table association (to Internet)
 resource "aws_route_table_association" "pub_assoc" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.inet.id
 }
+
 # Route table association NAT
 resource "aws_route_table_association" "nat_assoc" {
   subnet_id      = aws_subnet.private.id
@@ -102,7 +114,7 @@ resource "aws_route_table_association" "nat_assoc" {
 # Launch templates
 ##################
 resource "aws_launch_template" "public_cluster" {
-  name_prefix   = "public_cluster"
+  name_prefix   = "${random_pet.server.id}-public-cluster"
   image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
@@ -120,12 +132,12 @@ resource "aws_launch_template" "public_cluster" {
   }
 
   tags = {
-    Name = "Flugel Public Cluster"
+    Name = "Public Cluster"
   }
 }
 
 resource "aws_launch_template" "private_cluster" {
-  name_prefix   = "private_cluster"
+  name_prefix   = "${random_pet.server.id}-private-cluster"
   image_id      = data.aws_ami.image_id.id
   instance_type = var.instance_type
   key_name      = var.ssh_key
@@ -143,7 +155,7 @@ resource "aws_launch_template" "private_cluster" {
   }
 
   tags = {
-    Name = "Flugel Private Cluster"
+    Name = "DevOps Crew Private Cluster"
   }
 }
 
@@ -166,7 +178,7 @@ resource "aws_autoscaling_group" "public_asg" {
 
   tag {
     key                 = "Name"
-    value               = "flugel-public-asg"
+    value               = "devops crew public asg"
     propagate_at_launch = true
   }
 }
@@ -187,7 +199,7 @@ resource "aws_autoscaling_group" "private_asg" {
 
   tag {
     key                 = "Name"
-    value               = "flugel-private-asg"
+    value               = "devops crew private asg"
     propagate_at_launch = true
   }
 }
@@ -196,10 +208,10 @@ resource "aws_autoscaling_group" "private_asg" {
 # Security Groups
 #################
 resource "aws_security_group" "alb_sg" {
-  name   = var.alb_sg_name
+  name   = "${random_pet.server.id}-alb-sg"
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "flugel_allow_http"
+    Name = "allow_http"
   }
   # Allow inbound HTTP requests
   ingress {
@@ -218,10 +230,10 @@ resource "aws_security_group" "alb_sg" {
 }
 
 resource "aws_security_group" "public_sg" {
-  name   = "public-sg-1"
+  name   = "${random_pet.server.id}-public-sg-1"
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "Flugel public sg traffic"
+    Name = "public sg traffic"
   }
   ingress {
     from_port   = var.server_port
@@ -244,10 +256,10 @@ resource "aws_security_group" "public_sg" {
 }
 
 resource "aws_security_group" "private_sg" {
-  name   = "private-sg-1"
+  name   = "${random_pet.server.id}-private-sg-1"
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "Flugel private sg traffic"
+    Name = "private sg traffic"
   }
   ingress {
     from_port   = 0
@@ -272,7 +284,7 @@ resource "aws_subnet" "private" {
   availability_zone = "${var.region}b"
 
   tags = {
-    Name = "Flugel private subnet"
+    Name = "private subnet"
   }
 
   timeouts {
@@ -287,7 +299,7 @@ resource "aws_subnet" "public" {
   availability_zone = "${var.region}a"
 
   tags = {
-    Name = "Flugel public subnet"
+    Name = "public subnet"
   }
 
   timeouts {
@@ -300,14 +312,14 @@ resource "aws_subnet" "public" {
 # Load Balancers
 ################
 resource "aws_lb" "alb" {
-  name               = var.alb_name
+  name               = "${random_pet.server.id}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.public.id, aws_subnet.private.id]
 
   tags = {
-    Name = "Flugel ALB"
+    Name = "DevOps Crew Application Load Balancer"
   }
 }
 # HTTP listener
@@ -369,7 +381,7 @@ resource "aws_eip" "natgw" {
   depends_on = [aws_internet_gateway.gw]
 
   tags = {
-    Name = "Flugel EIP nat gw"
+    Name = "EIP nat gw"
   }
 
 }
@@ -414,8 +426,8 @@ resource "aws_iam_role_policy_attachment" "s3_read_only_policy" {
 # IAM Policy
 ############
 resource "aws_iam_policy" "s3_policy" {
-  name        = "flugel-s3-policy"
-  description = "Especific policy to get acces to bucket ${var.bucket_name}"
+  name        = "devops-s3-policy"
+  description = "Especific policy to get acces to bucket ${aws_s3_bucket.main.id}"
   policy      = data.aws_iam_policy_document.s3_access_policy.json
 }
 
@@ -424,7 +436,7 @@ data "template_file" "init" {
   vars = {
     lb_host = aws_lb.alb.dns_name
     region  = var.region
-    bucket  = var.bucket_name
+    bucket  = aws_s3_bucket.main.id
   }
 }
 
@@ -441,8 +453,8 @@ data "aws_iam_policy_document" "s3_access_policy" {
     ]
 
     resources = [
-      "arn:aws:s3:::${var.bucket_name}",
-      "arn:aws:s3:::${var.bucket_name}/*"
+      "arn:aws:s3:::${aws_s3_bucket.main.id}",
+      "arn:aws:s3:::${aws_s3_bucket.main.id}/*"
     ]
   }
 }
