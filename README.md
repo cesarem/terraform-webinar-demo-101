@@ -1,4 +1,4 @@
-# Test 1 DevOps
+# Demo DevOps Crew
 * Create Terraform code to create a AWS S3 bucket with two files: test1.txt and test2.txt. The content of these files must be the timestamp when the code was executed.
 * Using Kitchen Terraform, create the script to automate the testing for the Terraform code, validating that both files and the bucket are created successfully.
 
@@ -77,7 +77,7 @@ $ ./parameters.py packer-manifest.json
 ### Configure and Test
 
 ```
-$ git clone https://github.com/cesaramaya-flugel/test1.git
+$ git clone https://github.com/cesarem/terraform-webinar-demo-101.git
 $ cd test1
 $ bundle install
 
@@ -95,11 +95,6 @@ $ bundle exec kitchen destroy
 
 #### S3 Bucket Name
 If you want to change the default S3 backet name, edit the variables.tf file and set the default to the desired name.
-```
-variable "bucket_name" {
-  default = "flugel-test1-bucket"
-}
-```
 
 #### Execute Terraform
 ```
@@ -112,7 +107,7 @@ When the `apply` command completes, you should see the name of the bucket create
 ```
 Outputs example:
 
-lb_dns_name = http://flugel-alb-1-686972612.us-east-1.elb.amazonaws.com/
+lb_dns_name = http://devops-crew-alb-1-686972612.us-east-1.elb.amazonaws.com/
 timestamp = 2020-03-24T14:14:50Z
 ```
 
