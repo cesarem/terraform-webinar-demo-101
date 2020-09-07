@@ -19,9 +19,9 @@
         	"sleep 5",
         	"sudo curl -L \"https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
         	"sudo chmod +x /usr/local/bin/docker-compose",
-        	"sudo mkdir -p /opt/flugel-it",
-        	"cd /opt/flugel-it",
-        	"sudo git clone https://github.com/cesaramaya-flugel/reverse-proxy.git"
+        	"sudo mkdir -p /opt/crew",
+        	"cd /opt/crew",
+        	"sudo git clone https://github.com/cesarem/reverse-proxy.git"
 	    ]
 	  }
 	],
